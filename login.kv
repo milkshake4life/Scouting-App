@@ -33,7 +33,7 @@ MDScreen:
             pos_hint: {"center_x": 0.5, "center_y": 0.63}
             TextInput:
                 hint_text: "Team number"
-                id: email
+                id: team_number
                 font_name: "BPoppins"
                 size_hint_y: .75
                 pos_hint: {"center_x": .43, "center_y": .5}
@@ -76,9 +76,7 @@ MDScreen:
             pos_hint: {"center_x": .5, "center_y": .34}
             background_color: 0, 0, 0, 0
             on_release:
-                
-                root.manager.transition.direction = "left"
-                root.manager.current = "regional"
+                app.verifyData(team_number, password)
             canvas.before:
                 Color:
                     rgb: rgba(0, 130, 190, 255)
@@ -86,4 +84,13 @@ MDScreen:
                     size: self.size
                     pos: self.pos
                     radius: [5]
+        
+        MDLabel:
+            id: status_label
+            text: ""
+            font_name: "BPoppins"
+            font_size: "14sp"
+            pos_hint: {"center_x": 0.5, "center_y": 0.275}
+            halign: "center"
+            color: rgba(255, 0, 0, 255)  # Red color for error messages
         

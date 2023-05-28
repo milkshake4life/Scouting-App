@@ -1,0 +1,36 @@
+MDScreen:
+    name: "newAccount"
+
+    MDFloatLayout:
+        md_bg_color: 1, 1, 1, 1
+        MDLabel:
+            text: "Account created!"
+            font_name: "BPoppins"
+            font_size: "26sp"
+            pos_hint: {"center_x": 0.51, "center_y": 0.85}
+            halign: "center"
+            color: rgba(0, 0, 59, 255)
+
+        MDLabel:
+            text: "Please go back and log in"
+            font_name: "BPoppins"
+            font_size: "18sp"
+            pos_hint: {"center_x": 0.63, "center_y": 0.79}
+            color: rgba(75, 133, 193, 255)
+
+        Button:
+            text: "Login in"
+            font_name: "BPoppins"
+            size_hint: .66, .065
+            pos_hint: {"center_x": .5, "center_y": .5}
+            background_color: 0, 0, 0, 0
+            on_release:
+                root.manager.transition.direction = "right"
+                root.manager.current = "login"
+            canvas.before:
+                Color:
+                    rgb: rgba(0, 130, 190, 255)
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [5]

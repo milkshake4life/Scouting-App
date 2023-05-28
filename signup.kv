@@ -12,3 +12,77 @@ MDScreen:
             on_release:
                 root.manager.transition.direction = "right"
                 root.manager.current = "main"
+    
+        MDLabel:
+            text: "Welcome!"
+            font_name: "BPoppins"
+            font_size: "26sp"
+            pos_hint: {"center_x": 0.315, "center_y": 0.85}
+            halign: "center"
+            color: rgba(0, 0, 59, 255)
+        
+        MDLabel:
+            text: "Sign up"
+            font_name: "BPoppins"
+            font_size: "18sp"
+            pos_hint: {"center_x": 0.6, "center_y": 0.79}
+            color: rgba(75, 133, 193, 255)
+
+        MDFloatLayout:
+            size_hint: 0.7, 0.07
+            pos_hint: {"center_x": 0.5, "center_y": 0.63}
+            TextInput:
+                hint_text: "Team number"
+                id: email
+                font_name: "BPoppins"
+                size_hint_y: .75
+                pos_hint: {"center_x": .43, "center_y": .5}
+                background_color: 1, 1, 1, 0
+                foreground_color: rgba(0, 0, 59, 255)
+                cursor_color: rgba(0, 0, 59, 255)
+                font_size: "14sp"
+                cursor_width: "2sp"
+                multiline: False
+            MDFloatLayout:
+                pos_hint: {"center_x": .45, "center_y": 0}
+                size_hint_y: 0.03
+                md_bg_color: rgba(178, 178, 178, 255)
+
+        MDFloatLayout:
+            size_hint: 0.7, 0.07
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            TextInput:
+                id: password
+                hint_text: "Password"
+                font_name: "BPoppins"
+                size_hint_y: .75
+                pos_hint: {"center_x": .43, "center_y": .5}
+                background_color: 1, 1, 1, 0
+                foreground_color: rgba(0, 0, 59, 255)
+                cursor_color: rgba(0, 0, 59, 255)
+                font_size: "14sp"
+                cursor_width: "2sp"
+                multiline: False
+                password: True
+            MDFloatLayout:
+                pos_hint: {"center_x": .45, "center_y": 0}
+                size_hint_y: 0.03
+                md_bg_color: rgba(178, 178, 178, 255)
+
+        Button:
+            text: "Sign up"
+            font_name: "BPoppins"
+            size_hint: .66, .065
+            pos_hint: {"center_x": .5, "center_y": .34}
+            background_color: 0, 0, 0, 0
+            on_release:
+                app.sendData(email, password)
+                root.manager.transition.direction = "left"
+                root.manager.current = "newAccount"
+            canvas.before:
+                Color:
+                    rgb: rgba(0, 130, 190, 255)
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [5]
