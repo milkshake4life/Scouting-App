@@ -1,0 +1,56 @@
+MDScreen:
+    name: "scout2"
+
+    MDFloatLayout:
+        md_bg_color: 1, 1, 1, 1
+        MDIconButton:
+            icon: "arrow-left"
+            pos_hint: {"center_y": .95}
+            user_font_size: "30sp"
+            theme_text_color: "Custom"
+            text_color: rgba(26, 24, 58, 255)
+            on_release:
+                root.manager.transition.direction = "right"
+                root.manager.current = "regional"
+        
+        MDLabel:
+            text: "San Diego!"
+            font_name: "BPoppins"
+            font_size: "26sp"
+            pos_hint: {"center_x": 0.51, "center_y": 0.85}
+            halign: "center"
+            color: rgba(0, 0, 59, 255)
+
+        Button:
+            text: "Scouting"
+            font_name: "BPoppins"
+            size_hint: .66, .065
+            pos_hint: {"center_x": .5, "center_y": .6}
+            background_color: 0, 0, 0, 0
+            on_release:
+                root.manager.transition.direction = "left"
+                root.manager.current = "s2s"
+            canvas.before:
+                Color:
+                    rgb: rgba(0, 130, 190, 255)
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [5]
+
+        Button:
+            text: "Scouting Information"
+            font_name: "BPoppins"
+            size_hint: .66, .065
+            pos_hint: {"center_x": .5, "center_y": .5}
+            background_color: 0, 0, 0, 0
+            color: rgba(0, 130, 190, 255)
+            on_release:
+                root.manager.transition.direction = "left"
+                root.manager.current = "s2i"
+            canvas.before:
+                Color:
+                    rgb: rgba(0, 130, 190, 255)
+                Line:
+                    width: 1.2
+                    rounded_rectangle: self.x, self.y, self.width, self.height, 5, 5, 5, 5, 100
