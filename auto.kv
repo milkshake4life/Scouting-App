@@ -28,6 +28,15 @@ MDScreen:
             halign: "center"
             color: rgba(0, 168, 240, 255)
     
+
+
+
+
+
+
+
+        
+
         MDGridLayout:
             cols: 3
             rows: 1
@@ -64,6 +73,7 @@ MDScreen:
             MDIconButton:
                 id: one_one
                 icon: "square-rounded-outline"
+                source: 
                 size_hint: None, None
                 on_release:
                     app.change_cone("one_one")
@@ -80,7 +90,7 @@ MDScreen:
                 icon: "square-rounded-outline"
                 size_hint: None, None
                 on_release:
-                    app.change_cone("one_three")
+                    app.change_bot("one_three")
 
             MDIconButton:
                 id: two_one
@@ -101,7 +111,7 @@ MDScreen:
                 icon: "square-rounded-outline"
                 size_hint: None, None
                 on_release:
-                    app.change_cube("two_three")
+                    app.change_bot("two_three")
 
             MDIconButton:
                 id: three_one
@@ -122,13 +132,149 @@ MDScreen:
                 icon: "square-rounded-outline"
                 size_hint: None, None
                 on_release:
-                    app.change_cone("three_three")
+                    app.change_bot("three_three")
+        
+
+
+
+
+
+
+
+
+
+
+        MDLabel:
+            text: "Taxi"
+            font_name: "BPoppins"
+            font_size: "17sp"
+            size_hint_x: 0.85
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            halign: "center"
+            color: rgba(0, 0, 0, 255)
+
+        MDLabel:
+            text: "Yes"
+            font_name: "BPoppins"
+            font_size: "13sp"
+            size_hint_x: 0.85
+            pos_hint: {"center_x": 0.325, "center_y": 0.45}
+            halign: "center"
+            color: rgba(0, 0, 0, 255)
+        
+        MDIconButton:
+            pos_hint: {"center_x": 0.4, "center_y": 0.45}
+            halign: "center"
+            icon: "square-rounded-outline"
+            size_hint: None, None
+
+        MDLabel:
+            text: "No"
+            font_name: "BPoppins"
+            font_size: "13sp"
+            size_hint_x: 0.85
+            pos_hint: {"center_x": 0.6, "center_y": 0.45}
+            halign: "center"
+            color: rgba(0, 0, 0, 255)
+        
+        MDIconButton:
+            pos_hint: {"center_x": 0.665, "center_y": 0.45}
+            halign: "center"
+            icon: "square-rounded-outline"
+            size_hint: None, None
+
+        MDLabel:
+            text: "Balanced"
+            font_name: "BPoppins"
+            font_size: "15sp"
+            size_hint_x: 0.85
+            pos_hint: {"center_x": 0.5, "center_y": 0.4}
+            halign: "center"
+            color: rgba(0, 0, 0, 255)
+
+        MDLabel:
+            text: "Yes"
+            font_name: "BPoppins"
+            font_size: "13sp"
+            size_hint_x: 0.85
+            pos_hint: {"center_x": 0.325, "center_y": 0.35}
+            halign: "center"
+            color: rgba(0, 0, 0, 255)
+        
+        MDIconButton:
+            pos_hint: {"center_x": 0.4, "center_y": 0.35}
+            halign: "center"
+            icon: "square-rounded-outline"
+            size_hint: None, None
+
+        MDLabel:
+            text: "No"
+            font_name: "BPoppins"
+            font_size: "13sp"
+            size_hint_x: 0.85
+            pos_hint: {"center_x": 0.6, "center_y": 0.35}
+            halign: "center"
+            color: rgba(0, 0, 0, 255)
+        
+        MDIconButton:
+            pos_hint: {"center_x": 0.665, "center_y": 0.35}
+            halign: "center"
+            icon: "square-rounded-outline"
+            size_hint: None, None
+
+        MDLabel:
+            text: "Docked"
+            font_name: "BPoppins"
+            font_size: "15sp"
+            size_hint_x: 0.85
+            pos_hint: {"center_x": 0.5, "center_y": 0.3}
+            halign: "center"
+            color: rgba(0, 0, 0, 255)
+        
+        MDLabel:
+            text: "Yes"
+            font_name: "BPoppins"
+            font_size: "13sp"
+            size_hint_x: 0.85
+            pos_hint: {"center_x": 0.325, "center_y": 0.25}
+            halign: "center"
+            color: rgba(0, 0, 0, 255)
+        
+        MDIconButton:
+            pos_hint: {"center_x": 0.4, "center_y": 0.25}
+            halign: "center"
+            icon: "square-rounded-outline"
+            size_hint: None, None
+
+        MDLabel:
+            text: "No"
+            font_name: "BPoppins"
+            font_size: "13sp"
+            size_hint_x: 0.85
+            pos_hint: {"center_x": 0.6, "center_y": 0.25}
+            halign: "center"
+            color: rgba(0, 0, 0, 255)
+        
+        MDIconButton:
+            pos_hint: {"center_x": 0.665, "center_y": 0.25}
+            halign: "center"
+            icon: "square-rounded-outline"
+            size_hint: None, None
+
+
+
+
+
+
+
+
+
             
         Button:
             text: "Confirm"
             font_name: "BPoppins"
             size_hint: .66, .065
-            pos_hint: {"center_x": .5, "center_y": .18}
+            pos_hint: {"center_x": .5, "center_y": .1}
             background_color: 0, 0, 0, 0
             on_release:
                 root.manager.transition.direction = "left"

@@ -130,7 +130,16 @@ class MainApp(MDApp):
 
 
         if self.root.get_screen('auto').ids[square].icon == "square-rounded-outline":
-            self.root.get_screen('auto').ids[square].icon = "square-outline"
+            self.root.get_screen('auto').ids[square].icon = "cube-outline"
+        else:
+            self.root.get_screen('auto').ids[square].icon = "square-rounded-outline"
+    
+    def change_bot(self, square):
+
+        if self.root.get_screen('auto').ids[square].icon == "square-rounded-outline":
+            self.root.get_screen('auto').ids[square].icon = "cube-outline"
+        elif self.root.get_screen('auto').ids[square].icon == "cube-outline":
+            self.root.get_screen('auto').ids[square].icon = "cone"
         else:
             self.root.get_screen('auto').ids[square].icon = "square-rounded-outline"
 
