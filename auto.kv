@@ -1,0 +1,143 @@
+MDScreen:
+    name: "auto"
+
+    MDFloatLayout:
+        md_bg_color: 1, 1, 1, 1
+
+        MDIconButton:
+            icon: "arrow-left"
+            pos_hint: {"center_y": .95}
+            on_release:
+                root.manager.transition.direction = "right"
+                root.manager.current = "s1s"
+
+        MDLabel:
+            text: "Autonomous Phase!"
+            font_name: "BPoppins"
+            font_size: "26sp"
+            pos_hint: {"center_x": 0.51, "center_y": 0.85}
+            halign: "center"
+            color: rgba(0, 0, 59, 255)
+
+        MDLabel:
+            text: "Please provide autonomous information"
+            font_name: "BPoppins"
+            font_size: "13sp"
+            size_hint_x: 0.85
+            pos_hint: {"center_x": 0.51, "center_y": 0.8}
+            halign: "center"
+            color: rgba(0, 168, 240, 255)
+    
+        MDGridLayout:
+            cols: 3
+            rows: 1
+            pos_hint: {"center_x": 0.854, "center_y": .26}
+            row_force_default: True
+            col_force_default: True
+            row_default_height: 50
+            col_default_width: 51
+            
+            MDLabel:
+                text: "Top"
+                font_name: "BPoppins"
+                font_size: "15sp"
+
+            MDLabel:
+                text: "Mid"
+                font_name: "BPoppins"
+                font_size: "15sp"
+
+            MDLabel:
+                text: "Bot"
+                font_name: "BPoppins"
+                font_size: "15sp"
+
+        MDGridLayout:
+            cols: 3
+            rows: 3
+            pos_hint: {"center_x": 0.822, "center_y": .2}
+            row_force_default: True
+            col_force_default: True
+            row_default_height: 50
+            col_default_width: 50
+
+            MDIconButton:
+                id: one_one
+                icon: "square-rounded-outline"
+                size_hint: None, None
+                on_release:
+                    app.change_cone("one_one")
+
+            MDIconButton:
+                id: one_two
+                icon: "square-rounded-outline"
+                size_hint: None, None
+                on_release:
+                    app.change_cone("one_two")
+
+            MDIconButton:
+                id: one_three
+                icon: "square-rounded-outline"
+                size_hint: None, None
+                on_release:
+                    app.change_cone("one_three")
+
+            MDIconButton:
+                id: two_one
+                icon: "square-rounded-outline"
+                size_hint: None, None
+                on_release:
+                    app.change_cube("two_one")
+            
+            MDIconButton:
+                id: two_two
+                icon: "square-rounded-outline"
+                size_hint: None, None
+                on_release:
+                    app.change_cube("two_two")
+
+            MDIconButton:
+                id: two_three
+                icon: "square-rounded-outline"
+                size_hint: None, None
+                on_release:
+                    app.change_cube("two_three")
+
+            MDIconButton:
+                id: three_one
+                icon: "square-rounded-outline"
+                size_hint: None, None
+                on_release:
+                    app.change_cone("three_one")
+
+            MDIconButton:
+                id: three_two
+                icon: "square-rounded-outline"
+                size_hint: None, None
+                on_release:
+                    app.change_cone("three_two")
+            
+            MDIconButton:
+                id: three_three
+                icon: "square-rounded-outline"
+                size_hint: None, None
+                on_release:
+                    app.change_cone("three_three")
+            
+        Button:
+            text: "Confirm"
+            font_name: "BPoppins"
+            size_hint: .66, .065
+            pos_hint: {"center_x": .5, "center_y": .18}
+            background_color: 0, 0, 0, 0
+            on_release:
+                root.manager.transition.direction = "left"
+                root.manager.current = "scout1"
+            canvas.before:
+                Color:
+                    rgb: rgba(0, 130, 190, 255)
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [5]
+                

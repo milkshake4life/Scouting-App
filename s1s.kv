@@ -7,9 +7,6 @@ MDScreen:
         MDIconButton:
             icon: "arrow-left"
             pos_hint: {"center_y": .95}
-            user_font_size: "30sp"
-            theme_text_color: "Custom"
-            text_color: rgba(26, 24, 58, 255)
             on_release:
                 root.manager.transition.direction = "right"
                 root.manager.current = "scout1"
@@ -23,20 +20,20 @@ MDScreen:
             color: rgba(0, 0, 59, 255)
 
         MDLabel:
-            text: "Choose which qualification match"
+            text: "Please provide the basic information"
             font_name: "BPoppins"
             font_size: "13sp"
             size_hint_x: 0.85
             pos_hint: {"center_x": 0.5, "center_y": 0.8}
             halign: "center"
-            color: rgba(127, 127, 127, 255)
+            color: rgba(0, 168, 240, 255)
     
         MDFloatLayout:
             size_hint: 0.7, 0.07
-            pos_hint: {"center_x": 0.5, "center_y": 0.71}
+            pos_hint: {"center_x": 0.525, "center_y": 0.68}
             TextInput:
-                hint_text: "Qualification Match"
-                id: qualificationMatch
+                hint_text: "Team Number"
+                id: teamNumber
                 font_name: "BPoppins"
                 size_hint_y: .75
                 pos_hint: {"center_x": .43, "center_y": .5}
@@ -46,6 +43,28 @@ MDScreen:
                 font_size: "14sp"
                 cursor_width: "2sp"
                 multiline: False
+                input_filter: "int"
+            MDFloatLayout:
+                pos_hint: {"center_x": .45, "center_y": 0}
+                size_hint_y: 0.03
+                md_bg_color: rgba(178, 178, 178, 255)
+    
+        MDFloatLayout:
+            size_hint: 0.7, 0.07
+            pos_hint: {"center_x": 0.525, "center_y": 0.56}
+            TextInput:
+                hint_text: "Qualification Match"
+                id: qualificationMatch
+                font_name: "BPoppins"
+                size_hint_y: .75
+                pos_hint: {"center_x": .43, "center_y": .325}
+                background_color: 1, 1, 1, 0
+                foreground_color: rgba(0, 0, 59, 255)
+                cursor_color: rgba(0, 0, 59, 255)
+                font_size: "14sp"
+                cursor_width: "2sp"
+                multiline: False
+                input_filter: "int"
             MDFloatLayout:
                 pos_hint: {"center_x": .45, "center_y": 0}
                 size_hint_y: 0.03
@@ -55,7 +74,25 @@ MDScreen:
             text: "Confirm"
             font_name: "BPoppins"
             size_hint: .66, .065
-            pos_hint: {"center_x": .5, "center_y": .34}
+            pos_hint: {"center_x": .5, "center_y": .18}
             background_color: 0, 0, 0, 0
             on_release:
+                app.sendTeamNumber(teamNumber)
+                app.sendQualificationMatch(teamNumber, qualificationMatch)
+            canvas.before:
+                Color:
+                    rgb: rgba(0, 130, 190, 255)
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [5]
+
+        MDLabel:
+            id: status_label
+            text: ""
+            font_name: "BPoppins"
+            font_size: "14sp"
+            pos_hint: {"center_x": 0.5, "center_y": 0.275}
+            halign: "center"
+            color: rgba(255, 0, 0, 255)  # Red color for error messages
                 

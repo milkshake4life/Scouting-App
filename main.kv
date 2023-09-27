@@ -27,14 +27,14 @@ MDScreen:
             color: rgba(127, 127, 127, 255)
 
         Button:
-            text: "Login"
+            text: "Tidal Tumble"
             font_name: "BPoppins"
             size_hint: .66, .065
             pos_hint: {"center_x": .5, "center_y": .18}
             background_color: 0, 0, 0, 0
             on_release:
                 root.manager.transition.direction = "left"
-                root.manager.current = "login"
+                root.manager.current = "scout1"
             canvas.before:
                 Color:
                     rgb: rgba(0, 130, 190, 255)
@@ -43,19 +43,4 @@ MDScreen:
                     pos: self.pos
                     radius: [5]
 
-        Button:
-            text: "Sign Up"
-            font_name: "BPoppins"
-            size_hint: .66, .065
-            pos_hint: {"center_x": .5, "center_y": .09}
-            background_color: 0, 0, 0, 0
-            color: rgba(0, 130, 190, 255)
-            on_release:
-                root.manager.transition.direction = "left"
-                root.manager.current = "signup"
-            canvas.before:
-                Color:
-                    rgb: rgba(0, 130, 190, 255)
-                Line:
-                    width: 1.2
-                    rounded_rectangle: self.x, self.y, self.width, self.height, 5, 5, 5, 5, 100
+        
