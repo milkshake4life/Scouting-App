@@ -62,6 +62,7 @@ MDScreen:
                 font_size: "15sp"
 
         MDGridLayout:
+            id: auto_grid_layout
             cols: 3
             rows: 3
             pos_hint: {"center_x": 0.822, "center_y": .2}
@@ -143,7 +144,6 @@ MDScreen:
 
 
 
-
         MDLabel:
             text: "Taxi"
             font_name: "BPoppins"
@@ -151,7 +151,7 @@ MDScreen:
             size_hint_x: 0.85
             pos_hint: {"center_x": 0.5, "center_y": 0.5}
             halign: "center"
-            color: rgba(0, 0, 0, 255)
+            color: rgba(0, 168, 240, 255)
 
         MDLabel:
             text: "Yes"
@@ -160,13 +160,15 @@ MDScreen:
             size_hint_x: 0.85
             pos_hint: {"center_x": 0.325, "center_y": 0.45}
             halign: "center"
-            color: rgba(0, 0, 0, 255)
-        
+
         MDIconButton:
+            id: check1
             pos_hint: {"center_x": 0.4, "center_y": 0.45}
             halign: "center"
             icon: "square-rounded-outline"
             size_hint: None, None
+            on_release:
+                app.change_check_mark("check1", "check2")
 
         MDLabel:
             text: "No"
@@ -178,88 +180,113 @@ MDScreen:
             color: rgba(0, 0, 0, 255)
         
         MDIconButton:
+            id: check2
             pos_hint: {"center_x": 0.665, "center_y": 0.45}
             halign: "center"
             icon: "square-rounded-outline"
             size_hint: None, None
+            on_release:
+                app.change_check_mark("check2", "check1")
+
+
+
+
+
+
 
         MDLabel:
             text: "Balanced"
             font_name: "BPoppins"
             font_size: "15sp"
             size_hint_x: 0.85
-            pos_hint: {"center_x": 0.5, "center_y": 0.4}
+            pos_hint: {"center_x": 0.5, "center_y": 0.38}
             halign: "center"
-            color: rgba(0, 0, 0, 255)
+            color: rgba(0, 168, 240, 255)
 
         MDLabel:
             text: "Yes"
             font_name: "BPoppins"
             font_size: "13sp"
             size_hint_x: 0.85
-            pos_hint: {"center_x": 0.325, "center_y": 0.35}
+            pos_hint: {"center_x": 0.325, "center_y": 0.33}
             halign: "center"
             color: rgba(0, 0, 0, 255)
         
         MDIconButton:
-            pos_hint: {"center_x": 0.4, "center_y": 0.35}
+            id: check3
+            pos_hint: {"center_x": 0.4, "center_y": 0.33}
             halign: "center"
             icon: "square-rounded-outline"
             size_hint: None, None
+            on_release:
+                app.change_check_mark("check3", "check4")
 
         MDLabel:
             text: "No"
             font_name: "BPoppins"
             font_size: "13sp"
             size_hint_x: 0.85
-            pos_hint: {"center_x": 0.6, "center_y": 0.35}
+            pos_hint: {"center_x": 0.6, "center_y": 0.33}
             halign: "center"
             color: rgba(0, 0, 0, 255)
         
         MDIconButton:
-            pos_hint: {"center_x": 0.665, "center_y": 0.35}
+            id: check4
+            pos_hint: {"center_x": 0.665, "center_y": 0.33}
             halign: "center"
             icon: "square-rounded-outline"
             size_hint: None, None
+            on_release:
+                app.change_check_mark("check4", "check3")
+
+
+
+
 
         MDLabel:
             text: "Docked"
             font_name: "BPoppins"
             font_size: "15sp"
             size_hint_x: 0.85
-            pos_hint: {"center_x": 0.5, "center_y": 0.3}
+            pos_hint: {"center_x": 0.5, "center_y": 0.26}
             halign: "center"
-            color: rgba(0, 0, 0, 255)
+            color: rgba(0, 168, 240, 255)
         
         MDLabel:
             text: "Yes"
             font_name: "BPoppins"
             font_size: "13sp"
             size_hint_x: 0.85
-            pos_hint: {"center_x": 0.325, "center_y": 0.25}
+            pos_hint: {"center_x": 0.325, "center_y": 0.21}
             halign: "center"
             color: rgba(0, 0, 0, 255)
         
         MDIconButton:
-            pos_hint: {"center_x": 0.4, "center_y": 0.25}
+            id: check5
+            pos_hint: {"center_x": 0.4, "center_y": 0.21}
             halign: "center"
             icon: "square-rounded-outline"
             size_hint: None, None
+            on_release:
+                app.change_check_mark("check5", "check6")
 
         MDLabel:
             text: "No"
             font_name: "BPoppins"
             font_size: "13sp"
             size_hint_x: 0.85
-            pos_hint: {"center_x": 0.6, "center_y": 0.25}
+            pos_hint: {"center_x": 0.6, "center_y": 0.21}
             halign: "center"
             color: rgba(0, 0, 0, 255)
         
         MDIconButton:
-            pos_hint: {"center_x": 0.665, "center_y": 0.25}
+            id: check6
+            pos_hint: {"center_x": 0.665, "center_y": 0.21}
             halign: "center"
             icon: "square-rounded-outline"
             size_hint: None, None
+            on_release:
+                app.change_check_mark("check6", "check5")
 
 
 
@@ -277,8 +304,7 @@ MDScreen:
             pos_hint: {"center_x": .5, "center_y": .1}
             background_color: 0, 0, 0, 0
             on_release:
-                root.manager.transition.direction = "left"
-                root.manager.current = "scout1"
+                app.send_auto_info("auto_grid_layout")
             canvas.before:
                 Color:
                     rgb: rgba(0, 130, 190, 255)

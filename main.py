@@ -30,36 +30,6 @@ class MainApp(MDApp):
         
 
         return screen_manager
-
-    # def get_qualification_matches(event_key):
-    # # Make a request to the Blue Alliance API to fetch the qualification matches for the given event
-    #     url = f"https://www.thebluealliance.com/api/v3/event/{event_key}/matches/simple"
-    #     headers = {"X-TBA-Auth-Key": api_key}  
-    #     response = requests.get(url, headers=headers)
-
-    #     if response.status_code == 200:
-    #         matches = response.json()
-    #         qualification_matches = {}
-
-    #         # Iterate over the matches and populate the qualification_matches dictionary
-    #         for match in matches:
-    #             if match["comp_level"] == "qm":
-    #                 match_number = match["match_number"]
-    #                 team_keys = match["alliances"]["red"]["team_keys"] + match["alliances"]["blue"]["team_keys"]
-    #                 team_numbers = [int(team_key[3:]) for team_key in team_keys]
-    #                 qualification_matches[match_number] = team_numbers
-
-    #         return qualification_matches
-    #     else:
-    #         raise Exception("Failed to fetch qualification matches from Blue Alliance API")
-
-    def print_teams_in_match(match_number, qualification_matches):
-        if match_number in qualification_matches:
-            teams = qualification_matches[match_number]
-            for team in teams:
-                print(f"Team {team}")
-        else:
-            print("Invalid match number!")
         
     def sendQualificationMatch(self, team_number_input, qualification_match_input):
         from firebase import firebase
@@ -142,6 +112,37 @@ class MainApp(MDApp):
             self.root.get_screen('auto').ids[square].icon = "cone"
         else:
             self.root.get_screen('auto').ids[square].icon = "square-rounded-outline"
+    
+    def change_check_mark(self, box1, box2):
+
+        if (self.root.get_screen('auto').ids[box1].icon == "square-rounded-outline") and (self.root.get_screen('auto').ids[box2].icon == "square-rounded-outline"):
+            self.root.get_screen('auto').ids[box1].icon = "checkbox-marked"
+
+        elif (self.root.get_screen('auto').ids[box1].icon == "square-rounded-outline") and (self.root.get_screen('auto').ids[box2].icon == "checkbox-marked"):
+            self.root.get_screen('auto').ids[box1].icon = "checkbox-marked"
+            self.root.get_screen('auto').ids[box2].icon = "square-rounded-outline"
+        
+        elif (self.root.get_screen('auto').ids[box1].icon == "checkbox-marked"):
+            self.root.get_screen('auto').ids[box1].icon = "square-rounded-outline"
+
+    def send_auto_info(self, grid):
+        from firebase import firebase
+        firebase = firebase.FirebaseApplication('https://scouting-app-68229-default-rtdb.firebaseio.com/', None)
+
+        auto_grid = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+
+        three = [0, 1, 2]
+
+        for row in three:
+            for cols in three:
+                button = self.root.get_screen('auto').ids[grid].children[row * 3 + cols]
+                if (button.icon != "square-rounded-outline"):
+                    auto_grid[row][cols] = 1
+
+        for row in three:
+            for cols in three:
+                print(auto_grid[row][cols])
+        
 
 if __name__ == "__main__":
     LabelBase.register(name="MPoppins", fn_regular="C:\\Users\\elee9\\Downloads\\Poppins\\Poppins-Medium.ttf")
