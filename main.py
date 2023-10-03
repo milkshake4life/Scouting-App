@@ -7,12 +7,16 @@ from kivymd.uix.menu import MDDropdownMenu
 from kivymd.uix.dialog import MDDialog
 from kivymd.uix.spinner import MDSpinner
 from kivy.metrics import dp
+from kivy.uix.scrollview import ScrollView
 import requests
 
 
 Window.size = (310, 580)
 
 class MainApp(MDApp):
+    team_number_text = ''
+    qualification_match_text = ''
+
     def build(self):
         screen_manager = ScreenManager()
         screen_manager.add_widget(Builder.load_file("main.kv"))
@@ -30,20 +34,22 @@ class MainApp(MDApp):
         
 
         return screen_manager
+    
         
     def sendQualificationMatch(self, team_number_input, qualification_match_input):
         from firebase import firebase
         firebase = firebase.FirebaseApplication('https://scouting-app-68229-default-rtdb.firebaseio.com/', None)
 
+        global team_number_text
+        global qualification_match_text
         team_number_text = team_number_input.text.strip()
-        team_qualification_text = qualification_match_input.text.strip()
+        qualification_match_text = qualification_match_input.text.strip()
 
-        if team_number_text and team_qualification_text:
+        if team_number_text and qualification_match_text:
             # Both inputs have non-empty values
             self.root.get_screen('s1s').ids.status_label.text = ""
 
-            # Send data to Firebase
-            firebase.post('https://scouting-app-68229-default-rtdb.firebaseio.com/' + team_number_text, team_qualification_text)
+            #firebase.post('https://scouting-app-68229-default-rtdb.firebaseio.com/' + team_number_text, team_qualification_text)
             self.root.transition.direction = "left"
             self.root.current = "auto"
 
@@ -135,13 +141,17 @@ class MainApp(MDApp):
 
         for row in three:
             for cols in three:
-                button = self.root.get_screen('auto').ids[grid].children[row * 3 + cols]
+                button = self.root.get_screen('auto').ids[grid].children[8-(row * 3 + cols)]
                 if (button.icon != "square-rounded-outline"):
                     auto_grid[row][cols] = 1
+        
 
-        for row in three:
-            for cols in three:
-                print(auto_grid[row][cols])
+        
+        data = {
+            'grid': auto_grid
+        }
+        
+        firebase.post('https://scouting-app-68229-default-rtdb.firebaseio.com/' + team_number_text + '/' + qualification_match_text + '/auto', data)
         
 
 if __name__ == "__main__":

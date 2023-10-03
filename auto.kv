@@ -138,14 +138,8 @@ MDScreen:
 
 
 
-
-
-
-
-
-
         MDLabel:
-            text: "Taxi"
+            text: "Auto Placement"
             font_name: "BPoppins"
             font_size: "17sp"
             size_hint_x: 0.85
@@ -154,11 +148,11 @@ MDScreen:
             color: rgba(0, 168, 240, 255)
 
         MDLabel:
-            text: "Yes"
+            text: "Wire"
             font_name: "BPoppins"
             font_size: "13sp"
             size_hint_x: 0.85
-            pos_hint: {"center_x": 0.325, "center_y": 0.45}
+            pos_hint: {"center_x": 0.3, "center_y": 0.45}
             halign: "center"
 
         MDIconButton:
@@ -171,17 +165,82 @@ MDScreen:
                 app.change_check_mark("check1", "check2")
 
         MDLabel:
-            text: "No"
+            text: "Middle"
             font_name: "BPoppins"
             font_size: "13sp"
             size_hint_x: 0.85
-            pos_hint: {"center_x": 0.6, "center_y": 0.45}
+            pos_hint: {"center_x": 0.5, "center_y": 0.45}
             halign: "center"
             color: rgba(0, 0, 0, 255)
         
         MDIconButton:
             id: check2
-            pos_hint: {"center_x": 0.665, "center_y": 0.45}
+            pos_hint: {"center_x": 0.6, "center_y": 0.45}
+            halign: "center"
+            icon: "square-rounded-outline"
+            size_hint: None, None
+            on_release:
+                app.change_check_mark("check2", "check1")
+        
+        MDLabel:
+            text: "Short"
+            font_name: "BPoppins"
+            font_size: "13sp"
+            size_hint_x: 0.85
+            pos_hint: {"center_x": 0.7, "center_y": 0.45}
+            halign: "center"
+            color: rgba(0, 0, 0, 255)
+        
+        MDIconButton:
+            id: check2
+            pos_hint: {"center_x": 0.8, "center_y": 0.45}
+            halign: "center"
+            icon: "square-rounded-outline"
+            size_hint: None, None
+            on_release:
+                app.change_check_mark("check2", "check1")
+
+
+
+
+        MDLabel:
+            text: "Taxi"
+            font_name: "BPoppins"
+            font_size: "17sp"
+            size_hint_x: 0.85
+            pos_hint: {"center_x": 0.5, "center_y": 0.4}
+            halign: "center"
+            color: rgba(0, 168, 240, 255)
+
+        MDLabel:
+            text: "Yes"
+            font_name: "BPoppins"
+            font_size: "13sp"
+            size_hint_x: 0.85
+            pos_hint: {"center_x": 0.325, "center_y": 0.4}
+            halign: "center"
+
+        MDIconButton:
+            id: check1
+            pos_hint: {"center_x": 0.4, "center_y": 0.4}
+            halign: "center"
+            icon: "square-rounded-outline"
+            size_hint: None, None
+            on_release:
+                app.change_check_mark("check1", "check2")
+
+        MDLabel:
+            text: "No"
+            font_name: "BPoppins"
+            font_size: "13sp"
+            size_hint_x: 0.85
+            pos_hint: {"center_x": 0.6, "center_y": 0.4}
+            halign: "center"
+            color: rgba(0, 0, 0, 255)
+        
+        MDIconButton:
+            id: check2
+            pos_hint: {"center_x": 0.665, "center_y": 0.4}
             halign: "center"
             icon: "square-rounded-outline"
             size_hint: None, None
