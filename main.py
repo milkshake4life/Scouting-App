@@ -31,6 +31,7 @@ class MainApp(MDApp):
         screen_manager.add_widget(Builder.load_file("s2i.kv"))
         screen_manager.add_widget(Builder.load_file("auto.kv"))
         screen_manager.add_widget(Builder.load_file("newAccount.kv"))
+        screen_manager.add_widget(Builder.load_file("teleop.kv"))
         
 
         return screen_manager
@@ -94,48 +95,82 @@ class MainApp(MDApp):
         if not is_verified:
             self.root.get_screen('login').ids.status_label.text = "Incorrect team number or password"
 
-    def change_cone(self, square):
+    def change_cone(self, page, square):
 
 
-        if self.root.get_screen('auto').ids[square].icon == "square-rounded-outline":
-            self.root.get_screen('auto').ids[square].icon = "cone"
+        if self.root.get_screen(page).ids[square].icon == "square-rounded-outline":
+            self.root.get_screen(page).ids[square].icon = "cone"
         else:
-            self.root.get_screen('auto').ids[square].icon = "square-rounded-outline"
+            self.root.get_screen(page).ids[square].icon = "square-rounded-outline"
     
-    def change_cube(self, square):
+    def change_cube(self, page, square):
 
 
-        if self.root.get_screen('auto').ids[square].icon == "square-rounded-outline":
-            self.root.get_screen('auto').ids[square].icon = "cube-outline"
+        if self.root.get_screen(page).ids[square].icon == "square-rounded-outline":
+            self.root.get_screen(page).ids[square].icon = "cube-outline"
         else:
-            self.root.get_screen('auto').ids[square].icon = "square-rounded-outline"
+            self.root.get_screen(page).ids[square].icon = "square-rounded-outline"
     
-    def change_bot(self, square):
+    def change_bot(self, page, square):
 
-        if self.root.get_screen('auto').ids[square].icon == "square-rounded-outline":
-            self.root.get_screen('auto').ids[square].icon = "cube-outline"
-        elif self.root.get_screen('auto').ids[square].icon == "cube-outline":
-            self.root.get_screen('auto').ids[square].icon = "cone"
+        if self.root.get_screen(page).ids[square].icon == "square-rounded-outline":
+            self.root.get_screen(page).ids[square].icon = "cube-outline"
+        elif self.root.get_screen(page).ids[square].icon == "cube-outline":
+            self.root.get_screen(page).ids[square].icon = "cone"
         else:
-            self.root.get_screen('auto').ids[square].icon = "square-rounded-outline"
+            self.root.get_screen(page).ids[square].icon = "square-rounded-outline"
     
-    def change_check_mark(self, box1, box2):
+    
+    def change_two_check_mark(self, page, box1, box2):
 
-        if (self.root.get_screen('auto').ids[box1].icon == "square-rounded-outline") and (self.root.get_screen('auto').ids[box2].icon == "square-rounded-outline"):
-            self.root.get_screen('auto').ids[box1].icon = "checkbox-marked"
+        if (self.root.get_screen(page).ids[box1].icon == "square-rounded-outline")  and (self.root.get_screen('auto').ids[box2].icon == "square-rounded-outline"):
+            self.root.get_screen(page).ids[box1].icon = "checkbox-marked"
 
-        elif (self.root.get_screen('auto').ids[box1].icon == "square-rounded-outline") and (self.root.get_screen('auto').ids[box2].icon == "checkbox-marked"):
-            self.root.get_screen('auto').ids[box1].icon = "checkbox-marked"
-            self.root.get_screen('auto').ids[box2].icon = "square-rounded-outline"
+        elif (self.root.get_screen(page).ids[box1].icon == "square-rounded-outline") and (self.root.get_screen('auto').ids[box2].icon == "checkbox-marked"):
+            self.root.get_screen(page).ids[box1].icon = "checkbox-marked"
+            self.root.get_screen(page).ids[box2].icon = "square-rounded-outline"
         
-        elif (self.root.get_screen('auto').ids[box1].icon == "checkbox-marked"):
-            self.root.get_screen('auto').ids[box1].icon = "square-rounded-outline"
+        elif (self.root.get_screen(page).ids[box1].icon == "checkbox-marked"):
+            self.root.get_screen(page).ids[box1].icon = "square-rounded-outline"
+    
+    def change_three_check_mark(self, page, box1, box2, box3):
+
+        if (self.root.get_screen(page).ids[box1].icon == "square-rounded-outline")  and (self.root.get_screen('auto').ids[box2].icon == "square-rounded-outline") and (self.root.get_screen('auto').ids[box3].icon == "square-rounded-outline"):
+            self.root.get_screen(page).ids[box1].icon = "checkbox-marked"
+
+        elif (self.root.get_screen(page).ids[box1].icon == "square-rounded-outline") and (self.root.get_screen('auto').ids[box2].icon == "checkbox-marked"):
+            self.root.get_screen(page).ids[box1].icon = "checkbox-marked"
+            self.root.get_screen(page).ids[box2].icon = "square-rounded-outline"
+        
+        elif (self.root.get_screen(page).ids[box1].icon == "square-rounded-outline") and (self.root.get_screen('auto').ids[box3].icon == "checkbox-marked"):
+            self.root.get_screen(page).ids[box1].icon = "checkbox-marked"
+            self.root.get_screen(page).ids[box3].icon = "square-rounded-outline"
+        
+        elif (self.root.get_screen(page).ids[box1].icon == "checkbox-marked"):
+            self.root.get_screen(page).ids[box1].icon = "square-rounded-outline"
 
     def send_auto_info(self, grid):
         from firebase import firebase
         firebase = firebase.FirebaseApplication('https://scouting-app-68229-default-rtdb.firebaseio.com/', None)
 
         auto_grid = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+        if(self.root.get_screen('auto').ids.wire.icon == "checkbox-marked"):
+           placement = "wire"
+        elif(self.root.get_screen('auto').ids.middle.icon == "checkbox-marked"):
+            placement = "middle"
+        else:
+            placement = "short"
+        taxi = "false"
+        balanced = "false"
+        docked = "false"
+
+        if((self.root.get_screen('auto').ids.check1.icon == "checkbox-marked")):
+            taxi = "true"
+        if((self.root.get_screen('auto').ids.check3.icon == "checkbox-marked")):
+            balanced = "true"
+        if((self.root.get_screen('auto').ids.check5.icon == "checkbox-marked")):
+            docked = "true"
+
 
         three = [0, 1, 2]
 
@@ -148,11 +183,57 @@ class MainApp(MDApp):
 
         
         data = {
-            'grid': auto_grid
+            'grid': auto_grid,
+            'auto placement': placement,
+            'taxi': taxi,
+            'balanced': balanced,
+            'docked': docked
         }
         
         firebase.post('https://scouting-app-68229-default-rtdb.firebaseio.com/' + team_number_text + '/' + qualification_match_text + '/auto', data)
         
+    def send_teleop_info(self, left_grid, middle_grid, right_grid):
+        from firebase import firebase
+        firebase = firebase.FirebaseApplication('https://scouting-app-68229-default-rtdb.firebaseio.com/', None)
+
+        teleop_grid = [[0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0]]
+
+        defense = "false"
+        balance = "false"
+        docked = "false"
+
+        if((self.root.get_screen('teleop').ids.check1.icon == "checkbox-marked")):
+            defense = "true"
+        if((self.root.get_screen('teleop').ids.check3.icon == "checkbox-marked")):
+            balanced = "true"
+        if((self.root.get_screen('teleop').ids.check5.icon == "checkbox-marked")):
+            docked = "true"
+
+        #fix this
+        three = [0, 1, 2]
+
+        for row in three:
+            for cols in three:
+                leftButton = self.root.get_screen('teleop').ids[left_grid].children[8-(row * 3 + cols)]
+                if (leftButton.icon != "square-rounded-outline"):
+                    teleop_grid[row][cols] = 1
+                middleButton = self.root.get_screen('teleop').ids[middle_grid].children[8-(row * 3 + cols)]
+                if (middleButton.icon != "square-rounded-outline"):
+                    teleop_grid[row][cols + 3] = 1
+                rightButton = self.root.get_screen('teleop').ids[right_grid].children[8-(row * 3 + cols)]
+                if (rightButton.icon != "square-rounded-outline"):
+                    teleop_grid[row][cols + 6] = 1
+        
+
+        
+        data = {
+            'grid': teleop_grid,
+            'defense bot': defense,
+            'balanced': balanced,
+            'docked': docked
+        }
+        
+        firebase.post('https://scouting-app-68229-default-rtdb.firebaseio.com/' + team_number_text + '/' + qualification_match_text + '/teleop', data)
 
 if __name__ == "__main__":
     LabelBase.register(name="MPoppins", fn_regular="C:\\Users\\elee9\\Downloads\\Poppins\\Poppins-Medium.ttf")

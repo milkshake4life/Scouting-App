@@ -77,63 +77,63 @@ MDScreen:
                 source: 
                 size_hint: None, None
                 on_release:
-                    app.change_cone("one_one")
+                    app.change_cone("auto", "one_one")
 
             MDIconButton:
                 id: one_two
                 icon: "square-rounded-outline"
                 size_hint: None, None
                 on_release:
-                    app.change_cone("one_two")
+                    app.change_cone("auto", "one_two")
 
             MDIconButton:
                 id: one_three
                 icon: "square-rounded-outline"
                 size_hint: None, None
                 on_release:
-                    app.change_bot("one_three")
+                    app.change_bot("auto", "one_three")
 
             MDIconButton:
                 id: two_one
                 icon: "square-rounded-outline"
                 size_hint: None, None
                 on_release:
-                    app.change_cube("two_one")
+                    app.change_cube("auto", "two_one")
             
             MDIconButton:
                 id: two_two
                 icon: "square-rounded-outline"
                 size_hint: None, None
                 on_release:
-                    app.change_cube("two_two")
+                    app.change_cube("auto", "two_two")
 
             MDIconButton:
                 id: two_three
                 icon: "square-rounded-outline"
                 size_hint: None, None
                 on_release:
-                    app.change_bot("two_three")
+                    app.change_bot("auto", "two_three")
 
             MDIconButton:
                 id: three_one
                 icon: "square-rounded-outline"
                 size_hint: None, None
                 on_release:
-                    app.change_cone("three_one")
+                    app.change_cone("auto", "three_one")
 
             MDIconButton:
                 id: three_two
                 icon: "square-rounded-outline"
                 size_hint: None, None
                 on_release:
-                    app.change_cone("three_two")
+                    app.change_cone("auto", "three_two")
             
             MDIconButton:
                 id: three_three
                 icon: "square-rounded-outline"
                 size_hint: None, None
                 on_release:
-                    app.change_bot("three_three")
+                    app.change_bot("auto", "three_three")
         
 
 
@@ -152,35 +152,35 @@ MDScreen:
             font_name: "BPoppins"
             font_size: "13sp"
             size_hint_x: 0.85
-            pos_hint: {"center_x": 0.3, "center_y": 0.45}
+            pos_hint: {"center_x": 0.25, "center_y": 0.45}
             halign: "center"
 
         MDIconButton:
-            id: check1
-            pos_hint: {"center_x": 0.4, "center_y": 0.45}
+            id: wire
+            pos_hint: {"center_x": 0.33, "center_y": 0.45}
             halign: "center"
             icon: "square-rounded-outline"
             size_hint: None, None
             on_release:
-                app.change_check_mark("check1", "check2")
+                app.change_three_check_mark("auto", "wire", "middle", "short")
 
         MDLabel:
             text: "Middle"
             font_name: "BPoppins"
             font_size: "13sp"
             size_hint_x: 0.85
-            pos_hint: {"center_x": 0.5, "center_y": 0.45}
+            pos_hint: {"center_x": 0.47, "center_y": 0.45}
             halign: "center"
             color: rgba(0, 0, 0, 255)
         
         MDIconButton:
-            id: check2
-            pos_hint: {"center_x": 0.6, "center_y": 0.45}
+            id: middle
+            pos_hint: {"center_x": 0.57, "center_y": 0.45}
             halign: "center"
             icon: "square-rounded-outline"
             size_hint: None, None
             on_release:
-                app.change_check_mark("check2", "check1")
+                app.change_three_check_mark("auto", "middle", "short", "wire")
         
         MDLabel:
             text: "Short"
@@ -192,13 +192,13 @@ MDScreen:
             color: rgba(0, 0, 0, 255)
         
         MDIconButton:
-            id: check2
-            pos_hint: {"center_x": 0.8, "center_y": 0.45}
+            id: short
+            pos_hint: {"center_x": 0.79, "center_y": 0.45}
             halign: "center"
             icon: "square-rounded-outline"
             size_hint: None, None
             on_release:
-                app.change_check_mark("check2", "check1")
+                app.change_three_check_mark("auto", "short", "wire", "middle")
 
 
 
@@ -208,7 +208,7 @@ MDScreen:
             font_name: "BPoppins"
             font_size: "17sp"
             size_hint_x: 0.85
-            pos_hint: {"center_x": 0.5, "center_y": 0.4}
+            pos_hint: {"center_x": 0.5, "center_y": 0.41}
             halign: "center"
             color: rgba(0, 168, 240, 255)
 
@@ -217,35 +217,35 @@ MDScreen:
             font_name: "BPoppins"
             font_size: "13sp"
             size_hint_x: 0.85
-            pos_hint: {"center_x": 0.325, "center_y": 0.4}
+            pos_hint: {"center_x": 0.325, "center_y": 0.36}
             halign: "center"
 
         MDIconButton:
             id: check1
-            pos_hint: {"center_x": 0.4, "center_y": 0.4}
+            pos_hint: {"center_x": 0.4, "center_y": 0.36}
             halign: "center"
             icon: "square-rounded-outline"
             size_hint: None, None
             on_release:
-                app.change_check_mark("check1", "check2")
+                app.change_two_check_mark("auto", "check1", "check2")
 
         MDLabel:
             text: "No"
             font_name: "BPoppins"
             font_size: "13sp"
             size_hint_x: 0.85
-            pos_hint: {"center_x": 0.6, "center_y": 0.4}
+            pos_hint: {"center_x": 0.6, "center_y": 0.36}
             halign: "center"
             color: rgba(0, 0, 0, 255)
         
         MDIconButton:
             id: check2
-            pos_hint: {"center_x": 0.665, "center_y": 0.4}
+            pos_hint: {"center_x": 0.665, "center_y": 0.36}
             halign: "center"
             icon: "square-rounded-outline"
             size_hint: None, None
             on_release:
-                app.change_check_mark("check2", "check1")
+                app.change_two_check_mark("auto", "check2", "check1")
 
 
 
@@ -258,7 +258,7 @@ MDScreen:
             font_name: "BPoppins"
             font_size: "15sp"
             size_hint_x: 0.85
-            pos_hint: {"center_x": 0.5, "center_y": 0.38}
+            pos_hint: {"center_x": 0.5, "center_y": 0.32}
             halign: "center"
             color: rgba(0, 168, 240, 255)
 
@@ -267,36 +267,36 @@ MDScreen:
             font_name: "BPoppins"
             font_size: "13sp"
             size_hint_x: 0.85
-            pos_hint: {"center_x": 0.325, "center_y": 0.33}
+            pos_hint: {"center_x": 0.325, "center_y": 0.27}
             halign: "center"
             color: rgba(0, 0, 0, 255)
         
         MDIconButton:
             id: check3
-            pos_hint: {"center_x": 0.4, "center_y": 0.33}
+            pos_hint: {"center_x": 0.4, "center_y": 0.27}
             halign: "center"
             icon: "square-rounded-outline"
             size_hint: None, None
             on_release:
-                app.change_check_mark("check3", "check4")
+                app.change_two_check_mark("auto", "check3", "check4")
 
         MDLabel:
             text: "No"
             font_name: "BPoppins"
             font_size: "13sp"
             size_hint_x: 0.85
-            pos_hint: {"center_x": 0.6, "center_y": 0.33}
+            pos_hint: {"center_x": 0.6, "center_y": 0.27}
             halign: "center"
             color: rgba(0, 0, 0, 255)
         
         MDIconButton:
             id: check4
-            pos_hint: {"center_x": 0.665, "center_y": 0.33}
+            pos_hint: {"center_x": 0.665, "center_y": 0.27}
             halign: "center"
             icon: "square-rounded-outline"
             size_hint: None, None
             on_release:
-                app.change_check_mark("check4", "check3")
+                app.change_two_check_mark("auto", "check4", "check3")
 
 
 
@@ -307,7 +307,7 @@ MDScreen:
             font_name: "BPoppins"
             font_size: "15sp"
             size_hint_x: 0.85
-            pos_hint: {"center_x": 0.5, "center_y": 0.26}
+            pos_hint: {"center_x": 0.5, "center_y": 0.23}
             halign: "center"
             color: rgba(0, 168, 240, 255)
         
@@ -316,36 +316,36 @@ MDScreen:
             font_name: "BPoppins"
             font_size: "13sp"
             size_hint_x: 0.85
-            pos_hint: {"center_x": 0.325, "center_y": 0.21}
+            pos_hint: {"center_x": 0.325, "center_y": 0.18}
             halign: "center"
             color: rgba(0, 0, 0, 255)
         
         MDIconButton:
             id: check5
-            pos_hint: {"center_x": 0.4, "center_y": 0.21}
+            pos_hint: {"center_x": 0.4, "center_y": 0.18}
             halign: "center"
             icon: "square-rounded-outline"
             size_hint: None, None
             on_release:
-                app.change_check_mark("check5", "check6")
+                app.change_two_check_mark("auto", "check5", "check6")
 
         MDLabel:
             text: "No"
             font_name: "BPoppins"
             font_size: "13sp"
             size_hint_x: 0.85
-            pos_hint: {"center_x": 0.6, "center_y": 0.21}
+            pos_hint: {"center_x": 0.6, "center_y": 0.18}
             halign: "center"
             color: rgba(0, 0, 0, 255)
         
         MDIconButton:
             id: check6
-            pos_hint: {"center_x": 0.665, "center_y": 0.21}
+            pos_hint: {"center_x": 0.665, "center_y": 0.18}
             halign: "center"
             icon: "square-rounded-outline"
             size_hint: None, None
             on_release:
-                app.change_check_mark("check6", "check5")
+                app.change_two_check_mark("auto", "check6", "check5")
 
 
 
@@ -364,6 +364,8 @@ MDScreen:
             background_color: 0, 0, 0, 0
             on_release:
                 app.send_auto_info("auto_grid_layout")
+                root.manager.transition.direction = "left"
+                root.manager.current = "teleop"
             canvas.before:
                 Color:
                     rgb: rgba(0, 130, 190, 255)

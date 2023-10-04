@@ -1,0 +1,458 @@
+MDScreen:
+    name: "teleop"
+
+    MDFloatLayout:
+        md_bg_color: 1, 1, 1, 1
+
+        MDIconButton:
+            icon: "arrow-left"
+            pos_hint: {"center_y": .95}
+            on_release:
+                root.manager.transition.direction = "right"
+                root.manager.current = "auto"
+
+        MDLabel:
+            text: "Teleoperation Period!"
+            font_name: "BPoppins"
+            font_size: "26sp"
+            pos_hint: {"center_x": 0.51, "center_y": 0.85}
+            halign: "center"
+            color: rgba(0, 0, 59, 255)
+
+        MDLabel:
+            text: "Please provide teleoperation information"
+            font_name: "BPoppins"
+            font_size: "13sp"
+            size_hint_x: 0.85
+            pos_hint: {"center_x": 0.51, "center_y": 0.8}
+            halign: "center"
+            color: rgba(0, 168, 240, 255)
+    
+
+
+
+
+
+
+
+        MDLabel:
+            text: "Top"
+            halign: "center"
+            pos_hint: {"center_x": 0.5, "center_y": .73}
+            font_name: "BPoppins"
+            font_size: "15sp"
+
+        MDGridLayout:
+            id: auto_grid_layout_left
+            cols: 3
+            rows: 3
+            pos_hint: {"center_x": 0.5, "center_y": .2}
+            row_force_default: True
+            col_force_default: True
+            row_default_height: 50
+            col_default_width: 50
+
+            MDIconButton:
+                id: left_one_one
+                icon: "square-rounded-outline"
+                source: 
+                size_hint: None, None
+                on_release:
+                    app.change_cone("teleop", "left_one_one")
+
+            MDIconButton:
+                id: left_one_two
+                icon: "square-rounded-outline"
+                size_hint: None, None
+                on_release:
+                    app.change_cube("teleop", "left_one_two")
+
+            MDIconButton:
+                id: left_one_three
+                icon: "square-rounded-outline"
+                size_hint: None, None
+                on_release:
+                    app.change_cone("teleop", "left_one_three")
+
+            MDIconButton:
+                id: left_two_one
+                icon: "square-rounded-outline"
+                size_hint: None, None
+                on_release:
+                    app.change_cone("teleop", "left_two_one")
+            
+            MDIconButton:
+                id: left_two_two
+                icon: "square-rounded-outline"
+                size_hint: None, None
+                on_release:
+                    app.change_cube("teleop", "left_two_two")
+
+            MDIconButton:
+                id: left_two_three
+                icon: "square-rounded-outline"
+                size_hint: None, None
+                on_release:
+                    app.change_cone("teleop", "left_two_three")
+
+            MDIconButton:
+                id: left_three_one
+                icon: "square-rounded-outline"
+                size_hint: None, None
+                on_release:
+                    app.change_bot("teleop", "left_three_one")
+
+            MDIconButton:
+                id: left_three_two
+                icon: "square-rounded-outline"
+                size_hint: None, None
+                on_release:
+                    app.change_bot("teleop", "left_three_two")
+            
+            MDIconButton:
+                id: left_three_three
+                icon: "square-rounded-outline"
+                size_hint: None, None
+                on_release:
+                    app.change_bot("teleop", "left_three_three")
+
+        MDFloatLayout:
+            pos_hint: {"center_x": .345, "center_y": 0.6175}
+            size_hint: 0.002, 0.175
+            md_bg_color: rgba(178, 178, 178, 255)
+        MDFloatLayout:
+            pos_hint: {"center_x": .665, "center_y": 0.6175}
+            size_hint: 0.002, 0.175
+            md_bg_color: rgba(178, 178, 178, 255)
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        MDGridLayout:
+            id: grid_layout_middle
+            cols: 3
+            rows: 3
+            pos_hint: {"center_x": 0.822, "center_y": .2}
+            row_force_default: True
+            col_force_default: True
+            row_default_height: 50
+            col_default_width: 50
+
+            MDIconButton:
+                id: middle_one_one
+                icon: "square-rounded-outline"
+                source: 
+                size_hint: None, None
+                on_release:
+                    app.change_cone("teleop", "middle_one_one")
+
+            MDIconButton:
+                id: middle_one_two
+                icon: "square-rounded-outline"
+                size_hint: None, None
+                on_release:
+                    app.change_cube("teleop", "middle_one_two")
+
+            MDIconButton:
+                id: middle_one_three
+                icon: "square-rounded-outline"
+                size_hint: None, None
+                on_release:
+                    app.change_cone("teleop", "middle_one_three")
+
+            MDIconButton:
+                id: middle_two_one
+                icon: "square-rounded-outline"
+                size_hint: None, None
+                on_release:
+                    app.change_cone("teleop", "middle_two_one")
+            
+            MDIconButton:
+                id: middle_two_two
+                icon: "square-rounded-outline"
+                size_hint: None, None
+                on_release:
+                    app.change_cube("teleop", "middle_two_two")
+
+            MDIconButton:
+                id: middle_two_three
+                icon: "square-rounded-outline"
+                size_hint: None, None
+                on_release:
+                    app.change_cone("teleop", "middle_two_three")
+
+            MDIconButton:
+                id: middle_three_one
+                icon: "square-rounded-outline"
+                size_hint: None, None
+                on_release:
+                    app.change_bot("teleop", "middle_three_one")
+
+            MDIconButton:
+                id: middle_three_two
+                icon: "square-rounded-outline"
+                size_hint: None, None
+                on_release:
+                    app.change_bot("teleop", "middle_three_two")
+            
+            MDIconButton:
+                id: middle_three_three
+                icon: "square-rounded-outline"
+                size_hint: None, None
+                on_release:
+                    app.change_bot("teleop", "middle_three_three")
+
+
+
+        MDGridLayout:
+            id: grid_layout_right
+            cols: 3
+            rows: 3
+            pos_hint: {"center_x": 1.14, "center_y": .2}
+            row_force_default: True
+            col_force_default: True
+            row_default_height: 50
+            col_default_width: 50
+
+            MDIconButton:
+                id: right_one_one
+                icon: "square-rounded-outline"
+                source: 
+                size_hint: None, None
+                on_release:
+                    app.change_cone("teleop", "right_one_one")
+
+            MDIconButton:
+                id: right_one_two
+                icon: "square-rounded-outline"
+                size_hint: None, None
+                on_release:
+                    app.change_cube("teleop", "right_one_two")
+
+            MDIconButton:
+                id: right_one_three
+                icon: "square-rounded-outline"
+                size_hint: None, None
+                on_release:
+                    app.change_cone("teleop", "right_one_three")
+
+            MDIconButton:
+                id: right_two_one
+                icon: "square-rounded-outline"
+                size_hint: None, None
+                on_release:
+                    app.change_cone("teleop", "right_two_one")
+            
+            MDIconButton:
+                id: right_two_two
+                icon: "square-rounded-outline"
+                size_hint: None, None
+                on_release:
+                    app.change_cube("teleop", "right_two_two")
+
+            MDIconButton:
+                id: right_two_three
+                icon: "square-rounded-outline"
+                size_hint: None, None
+                on_release:
+                    app.change_cone("teleop", "right_two_three")
+
+            MDIconButton:
+                id: right_three_one
+                icon: "square-rounded-outline"
+                size_hint: None, None
+                on_release:
+                    app.change_bot("teleop", "right_three_one")
+
+            MDIconButton:
+                id: right_three_two
+                icon: "square-rounded-outline"
+                size_hint: None, None
+                on_release:
+                    app.change_bot("teleop", "right_three_two")
+            
+            MDIconButton:
+                id: right_three_three
+                icon: "square-rounded-outline"
+                size_hint: None, None
+                on_release:
+                    app.change_bot("teleop", "right_three_three")
+        
+
+
+
+        MDLabel:
+            text: "Defense"
+            font_name: "BPoppins"
+            font_size: "17sp"
+            size_hint_x: 0.85
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            halign: "center"
+            color: rgba(0, 168, 240, 255)
+
+        MDLabel:
+            text: "Yes"
+            font_name: "BPoppins"
+            font_size: "13sp"
+            size_hint_x: 0.85
+            pos_hint: {"center_x": 0.325, "center_y": 0.45}
+            halign: "center"
+
+        MDIconButton:
+            id: check1
+            pos_hint: {"center_x": 0.4, "center_y": 0.45}
+            halign: "center"
+            icon: "square-rounded-outline"
+            size_hint: None, None
+            on_release:
+                app.change_two_check_mark("teleop", "check1", "check2")
+
+        MDLabel:
+            text: "No"
+            font_name: "BPoppins"
+            font_size: "13sp"
+            size_hint_x: 0.85
+            pos_hint: {"center_x": 0.6, "center_y": 0.45}
+            halign: "center"
+            color: rgba(0, 0, 0, 255)
+        
+        MDIconButton:
+            id: check2
+            pos_hint: {"center_x": 0.665, "center_y": 0.45}
+            halign: "center"
+            icon: "square-rounded-outline"
+            size_hint: None, None
+            on_release:
+                app.change_two_check_mark("teleop", "check2", "check1")
+        
+    
+
+
+
+        MDLabel:
+            text: "Balanced"
+            font_name: "BPoppins"
+            font_size: "17sp"
+            size_hint_x: 0.85
+            pos_hint: {"center_x": 0.5, "center_y": 0.41}
+            halign: "center"
+            color: rgba(0, 168, 240, 255)
+
+        MDLabel:
+            text: "Yes"
+            font_name: "BPoppins"
+            font_size: "13sp"
+            size_hint_x: 0.85
+            pos_hint: {"center_x": 0.325, "center_y": 0.36}
+            halign: "center"
+
+        MDIconButton:
+            id: check3
+            pos_hint: {"center_x": 0.4, "center_y": 0.36}
+            halign: "center"
+            icon: "square-rounded-outline"
+            size_hint: None, None
+            on_release:
+                app.change_two_check_mark("teleop", "check3", "check4")
+
+        MDLabel:
+            text: "No"
+            font_name: "BPoppins"
+            font_size: "13sp"
+            size_hint_x: 0.85
+            pos_hint: {"center_x": 0.6, "center_y": 0.36}
+            halign: "center"
+            color: rgba(0, 0, 0, 255)
+        
+        MDIconButton:
+            id: check4
+            pos_hint: {"center_x": 0.665, "center_y": 0.36}
+            halign: "center"
+            icon: "square-rounded-outline"
+            size_hint: None, None
+            on_release:
+                app.change_two_check_mark("teleop", "check4", "check3")
+
+
+
+
+
+
+
+        MDLabel:
+            text: "Docked"
+            font_name: "BPoppins"
+            font_size: "15sp"
+            size_hint_x: 0.85
+            pos_hint: {"center_x": 0.5, "center_y": 0.32}
+            halign: "center"
+            color: rgba(0, 168, 240, 255)
+
+        MDLabel:
+            text: "Yes"
+            font_name: "BPoppins"
+            font_size: "13sp"
+            size_hint_x: 0.85
+            pos_hint: {"center_x": 0.325, "center_y": 0.27}
+            halign: "center"
+            color: rgba(0, 0, 0, 255)
+        
+        MDIconButton:
+            id: check5
+            pos_hint: {"center_x": 0.4, "center_y": 0.27}
+            halign: "center"
+            icon: "square-rounded-outline"
+            size_hint: None, None
+            on_release:
+                app.change_two_check_mark("teleop", "check5", "check6")
+
+        MDLabel:
+            text: "No"
+            font_name: "BPoppins"
+            font_size: "13sp"
+            size_hint_x: 0.85
+            pos_hint: {"center_x": 0.6, "center_y": 0.27}
+            halign: "center"
+            color: rgba(0, 0, 0, 255)
+        
+        MDIconButton:
+            id: check6
+            pos_hint: {"center_x": 0.665, "center_y": 0.27}
+            halign: "center"
+            icon: "square-rounded-outline"
+            size_hint: None, None
+            on_release:
+                app.change_two_check_mark("teleop", "check6", "check5")
+
+
+
+
+
+
+
+            
+        Button:
+            text: "Confirm"
+            font_name: "BPoppins"
+            size_hint: .66, .065
+            pos_hint: {"center_x": .5, "center_y": .1}
+            background_color: 0, 0, 0, 0
+            on_release:
+                app.send_teleop_info("grid_layout_left", "grid_layout_middle", "grid_layout_right")
+            canvas.before:
+                Color:
+                    rgb: rgba(0, 130, 190, 255)
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [5]
+                
