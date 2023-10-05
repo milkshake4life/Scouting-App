@@ -32,6 +32,8 @@ class MainApp(MDApp):
         screen_manager.add_widget(Builder.load_file("auto.kv"))
         screen_manager.add_widget(Builder.load_file("newAccount.kv"))
         screen_manager.add_widget(Builder.load_file("teleop.kv"))
+        screen_manager.add_widget(Builder.load_file("submitted.kv"))
+
         
 
         return screen_manager
@@ -229,7 +231,7 @@ class MainApp(MDApp):
         data = {
             'grid': teleop_grid,
             'defense bot': defense,
-            'balanced': balanced,
+            'balanced': balance,
             'docked': docked
         }
         

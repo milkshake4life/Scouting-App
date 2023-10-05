@@ -1,0 +1,56 @@
+MDScreen:
+    name: "submitted"
+
+    MDFloatLayout:
+        md_bg_color: 1, 1, 1, 1
+
+        MDLabel:
+            text: "Your Match has been Submitted!"
+            font_name: "BPoppins"
+            font_size: "26sp"
+            pos_hint: {"center_x": 0.51, "center_y": 0.85}
+            halign: "center"
+            color: rgba(0, 0, 59, 255)
+
+        Button:
+            text: "Regional Page"
+            font_name: "BPoppins"
+            size_hint: .66, .065
+            pos_hint: {"center_x": .5, "center_y": .28}
+            background_color: 0, 0, 0, 0
+            on_release:
+                root.manager.transition.direction = "right"
+                root.manager.current = "scout1"
+            canvas.before:
+                Color:
+                    rgb: rgba(0, 130, 190, 255)
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [5]
+
+        Button:
+            text: "Submit Another Match"
+            font_name: "BPoppins"
+            size_hint: .66, .065
+            pos_hint: {"center_x": .5, "center_y": .18}
+            background_color: 0, 0, 0, 0
+            on_release:
+                root.manager.transition.direction = "right"
+                root.manager.current = "s1s"
+            canvas.before:
+                Color:
+                    rgb: rgba(0, 130, 190, 255)
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [5]
+    
+
+
+
+
+
+
+
+       

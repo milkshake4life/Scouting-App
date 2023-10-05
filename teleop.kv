@@ -43,7 +43,7 @@ MDScreen:
             font_size: "15sp"
 
         MDGridLayout:
-            id: auto_grid_layout_left
+            id: grid_layout_left
             cols: 3
             rows: 3
             pos_hint: {"center_x": 0.5, "center_y": .2}
@@ -448,6 +448,8 @@ MDScreen:
             background_color: 0, 0, 0, 0
             on_release:
                 app.send_teleop_info("grid_layout_left", "grid_layout_middle", "grid_layout_right")
+                root.manager.transition.direction = "left"
+                root.manager.current = "submitted"
             canvas.before:
                 Color:
                     rgb: rgba(0, 130, 190, 255)
