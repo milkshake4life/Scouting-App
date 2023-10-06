@@ -27,39 +27,16 @@ MDScreen:
             pos_hint: {"center_x": 0.51, "center_y": 0.8}
             halign: "center"
             color: rgba(0, 168, 240, 255)
-    
 
 
 
-
-
-
-
-        
-
-        MDGridLayout:
-            cols: 3
-            rows: 1
-            pos_hint: {"center_x": 0.854, "center_y": .26}
-            row_force_default: True
-            col_force_default: True
-            row_default_height: 50
-            col_default_width: 51
             
-            MDLabel:
-                text: "Top"
-                font_name: "BPoppins"
-                font_size: "15sp"
-
-            MDLabel:
-                text: "Mid"
-                font_name: "BPoppins"
-                font_size: "15sp"
-
-            MDLabel:
-                text: "Bot"
-                font_name: "BPoppins"
-                font_size: "15sp"
+        MDLabel:
+            halign: "center"
+            pos_hint: {"center_x": 0.5, "center_y": .73}
+            text: "Top"
+            font_name: "BPoppins"
+            font_size: "15sp"
 
         MDGridLayout:
             id: auto_grid_layout
@@ -84,21 +61,21 @@ MDScreen:
                 icon: "square-rounded-outline"
                 size_hint: None, None
                 on_release:
-                    app.change_cone("auto", "one_two")
+                    app.change_cube("auto", "one_two")
 
             MDIconButton:
                 id: one_three
                 icon: "square-rounded-outline"
                 size_hint: None, None
                 on_release:
-                    app.change_bot("auto", "one_three")
+                    app.change_cone("auto", "one_three")
 
             MDIconButton:
                 id: two_one
                 icon: "square-rounded-outline"
                 size_hint: None, None
                 on_release:
-                    app.change_cube("auto", "two_one")
+                    app.change_cone("auto", "two_one")
             
             MDIconButton:
                 id: two_two
@@ -112,21 +89,21 @@ MDScreen:
                 icon: "square-rounded-outline"
                 size_hint: None, None
                 on_release:
-                    app.change_bot("auto", "two_three")
+                    app.change_cone("auto", "two_three")
 
             MDIconButton:
                 id: three_one
                 icon: "square-rounded-outline"
                 size_hint: None, None
                 on_release:
-                    app.change_cone("auto", "three_one")
+                    app.change_bot("auto", "three_one")
 
             MDIconButton:
                 id: three_two
                 icon: "square-rounded-outline"
                 size_hint: None, None
                 on_release:
-                    app.change_cone("auto", "three_two")
+                    app.change_bot("auto", "three_two")
             
             MDIconButton:
                 id: three_three

@@ -1,0 +1,140 @@
+MDScreen:
+    name: "autoData"
+
+    MDFloatLayout:
+        md_bg_color: 1, 1, 1, 1
+        MDIconButton:
+            icon: "arrow-left"
+            pos_hint: {"center_y": .95}
+            user_font_size: "30sp"
+            theme_text_color: "Custom"
+            text_color: rgba(26, 24, 58, 255)
+            on_release:
+                root.manager.transition.direction = "right"
+                root.manager.current = "s1i"
+        
+        MDLabel:
+            id: data_team
+            text: ""
+            font_name: "BPoppins"
+            font_size: "26sp"
+            pos_hint: {"center_x": 0.5, "center_y": 0.85}
+            halign: "center"
+            color: rgba(0, 0, 59, 255)
+        
+        MDLabel:
+            text: "Autonomous Data"
+            font_name: "BPoppins"
+            font_size: "18sp"
+            halign: "center"
+            pos_hint: {"center_x": 0.5, "center_y": 0.79}
+            color: rgba(75, 133, 193, 255)
+        
+        MDLabel:
+            halign: "center"
+            pos_hint: {"center_x": 0.5, "center_y": .73}
+            text: "Top"
+            font_name: "BPoppins"
+            font_size: "15sp"
+
+        MDGridLayout:
+            id: auto_grid_layout
+            cols: 3
+            rows: 3
+            pos_hint: {"center_x": 0.822, "center_y": .2}
+            row_force_default: True
+            col_force_default: True
+            row_default_height: 50
+            col_default_width: 50
+
+            MDIconButton:
+                id: one_one
+                icon: "square-rounded-outline"
+                source: 
+                size_hint: None, None
+                on_release:
+                    app.change_cone("auto", "one_one")
+
+            MDIconButton:
+                id: one_two
+                icon: "square-rounded-outline"
+                size_hint: None, None
+                on_release:
+                    app.change_cube("auto", "one_two")
+
+            MDIconButton:
+                id: one_three
+                icon: "square-rounded-outline"
+                size_hint: None, None
+                on_release:
+                    app.change_cone("auto", "one_three")
+
+            MDIconButton:
+                id: two_one
+                icon: "square-rounded-outline"
+                size_hint: None, None
+                on_release:
+                    app.change_cone("auto", "two_one")
+            
+            MDIconButton:
+                id: two_two
+                icon: "square-rounded-outline"
+                size_hint: None, None
+                on_release:
+                    app.change_cube("auto", "two_two")
+
+            MDIconButton:
+                id: two_three
+                icon: "square-rounded-outline"
+                size_hint: None, None
+                on_release:
+                    app.change_cone("auto", "two_three")
+
+            MDIconButton:
+                id: three_one
+                icon: "square-rounded-outline"
+                size_hint: None, None
+                on_release:
+                    app.change_bot("auto", "three_one")
+
+            MDIconButton:
+                id: three_two
+                icon: "square-rounded-outline"
+                size_hint: None, None
+                on_release:
+                    app.change_bot("auto", "three_two")
+            
+            MDIconButton:
+                id: three_three
+                icon: "square-rounded-outline"
+                size_hint: None, None
+                on_release:
+                    app.change_bot("auto", "three_three")
+        
+        MDLabel:
+            text: "Balanced Percentage"
+            font_name: "BPoppins"
+            font_size: "13sp"
+            size_hint_x: 0.85
+            pos_hint: {"center_x": 0.325, "center_y": 0.36}
+            halign: "center"
+
+        MDLabel:
+            text: ''
+            id: balanced_percentage
+            pos_hint: {"center_x": 0.4, "center_y": 0.36}
+            halign: "center"
+            icon: "square-rounded-outline"
+            size_hint: None, None
+
+
+
+
+
+
+
+
+
+
+
+    

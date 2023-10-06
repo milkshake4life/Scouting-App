@@ -16,6 +16,7 @@ Window.size = (310, 580)
 class MainApp(MDApp):
     team_number_text = ''
     qualification_match_text = ''
+    team_data = ''
 
     def build(self):
         screen_manager = ScreenManager()
@@ -33,8 +34,7 @@ class MainApp(MDApp):
         screen_manager.add_widget(Builder.load_file("newAccount.kv"))
         screen_manager.add_widget(Builder.load_file("teleop.kv"))
         screen_manager.add_widget(Builder.load_file("submitted.kv"))
-
-        
+        screen_manager.add_widget(Builder.load_file("autoData.kv"))
 
         return screen_manager
     
@@ -52,7 +52,6 @@ class MainApp(MDApp):
             # Both inputs have non-empty values
             self.root.get_screen('s1s').ids.status_label.text = ""
 
-            #firebase.post('https://scouting-app-68229-default-rtdb.firebaseio.com/' + team_number_text, team_qualification_text)
             self.root.transition.direction = "left"
             self.root.current = "auto"
 
@@ -74,28 +73,28 @@ class MainApp(MDApp):
 
         firebase.post('https://scouting-app-68229-default-rtdb.firebaseio.com/', data)
         
-    def verifyData(self, team_number_input, password_input):
+    def verify_team_number(self, team_number_input):
         from firebase import firebase
         firebase = firebase.FirebaseApplication('https://scouting-app-68229-default-rtdb.firebaseio.com/', None)
 
         team_number_text = team_number_input.text
-        password_text = password_input.text
-
         is_verified = False
 
-        result = firebase.get('https://scouting-app-68229-default-rtdb.firebaseio.com/Users', '')
-
-        for i in result.keys():
-            if result[i]['team_number'] == team_number_text:
-                if result[i]['password'] == password_text:
+        result = firebase.get('https://scouting-app-68229-default-rtdb.firebaseio.com/tidal_tumble', '')
+        if result is not None:
+            for i in result.keys():
+                if i == team_number_text:
                     self.root.get_screen('login').ids.status_label.text = ""
                     is_verified = True
                     self.root.transition.direction = "left"
-                    self.root.current = "regional"
+                    self.root.current = "autoData"
+                    self.root.get_screen('autoData').ids.data_team.text = team_number_text
+                    global team_data
+                    team_data = team_number_text
                     break
     
         if not is_verified:
-            self.root.get_screen('login').ids.status_label.text = "Incorrect team number or password"
+            self.root.get_screen('s1i').ids.status_label.text = "Team number not found in database"
 
     def change_cone(self, page, square):
 
@@ -121,7 +120,6 @@ class MainApp(MDApp):
             self.root.get_screen(page).ids[square].icon = "cone"
         else:
             self.root.get_screen(page).ids[square].icon = "square-rounded-outline"
-    
     
     def change_two_check_mark(self, page, box1, box2):
 
@@ -192,7 +190,7 @@ class MainApp(MDApp):
             'docked': docked
         }
         
-        firebase.post('https://scouting-app-68229-default-rtdb.firebaseio.com/' + team_number_text + '/' + qualification_match_text + '/auto', data)
+        firebase.post('https://scouting-app-68229-default-rtdb.firebaseio.com/tidal_tumble/' + team_number_text + '/' + qualification_match_text + '/auto', data)
         
     def send_teleop_info(self, left_grid, middle_grid, right_grid):
         from firebase import firebase
@@ -235,7 +233,25 @@ class MainApp(MDApp):
             'docked': docked
         }
         
-        firebase.post('https://scouting-app-68229-default-rtdb.firebaseio.com/' + team_number_text + '/' + qualification_match_text + '/teleop', data)
+        firebase.post('https://scouting-app-68229-default-rtdb.firebaseio.com/tidal_tumble/' + team_number_text + '/' + qualification_match_text + '/teleop', data)
+
+    def get_auto_balanced_percentage(self):
+        from firebase import firebase
+        firebase = firebase.FirebaseApplication('https://scouting-app-68229-default-rtdb.firebaseio.com/', None)
+
+
+        yesCounter = 0
+        total = 0
+        result = firebase.get('https://scouting-app-68229-default-rtdb.firebaseio.com/tidal_tumble/' + team_data, '')
+
+        if result is not None:
+            for i in result.items():
+                if i['auto']['balanced'] == 'true':
+                    yesCounter = yesCounter + 1
+                total = total + 1
+        
+        return (yesCounter / total)
+    
 
 if __name__ == "__main__":
     LabelBase.register(name="MPoppins", fn_regular="C:\\Users\\elee9\\Downloads\\Poppins\\Poppins-Medium.ttf")
