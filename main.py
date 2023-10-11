@@ -242,15 +242,28 @@ class MainApp(MDApp):
 
         yesCounter = 0
         total = 0
-        result = firebase.get('https://scouting-app-68229-default-rtdb.firebaseio.com/tidal_tumble/' + team_data, '')
+        results = firebase.get('https://scouting-app-68229-default-rtdb.firebaseio.com/tidal_tumble/' + team_data, '')
 
-        if result is not None:
-            for i in result.items():
-                if i['auto']['balanced'] == 'true':
-                    yesCounter = yesCounter + 1
-                total = total + 1
-        
-        return (yesCounter / total)
+        if results is not None and isinstance(results, list):
+            for match_key, match_data in results.items():
+                if 'auto' in match_data and isinstance(match_data['auto'], dict):
+                    for auto_key, auto_data in match_data['auto'].items():
+                        balanced_value = auto_data.get('balanced', None)
+
+                        if balanced_value and balanced_value.lower() == 'true':
+                            yesCounter += 1
+
+                        total += 1
+
+            if total > 0:
+                print("works")
+                return (yesCounter / total) * 100.0  # Calculate the percentage
+            else:
+                print("zero division")
+                return 0  # Avoid division by zero
+        else:
+            print("not works")
+            return 0
     
 
 if __name__ == "__main__":
