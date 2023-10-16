@@ -17,6 +17,8 @@ class MainApp(MDApp):
     team_number_text = ''
     qualification_match_text = ''
     team_data = ''
+    current_auto_grid_percentage = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+
 
     def build(self):
         screen_manager = ScreenManager()
@@ -35,6 +37,7 @@ class MainApp(MDApp):
         screen_manager.add_widget(Builder.load_file("teleop.kv"))
         screen_manager.add_widget(Builder.load_file("submitted.kv"))
         screen_manager.add_widget(Builder.load_file("autoData.kv"))
+        screen_manager.add_widget(Builder.load_file("teleopData.kv"))
 
         return screen_manager
     
@@ -238,33 +241,111 @@ class MainApp(MDApp):
     def get_auto_balanced_percentage(self):
         from firebase import firebase
         firebase = firebase.FirebaseApplication('https://scouting-app-68229-default-rtdb.firebaseio.com/', None)
-
-
-        yesCounter = 0
-        total = 0
         results = firebase.get('https://scouting-app-68229-default-rtdb.firebaseio.com/tidal_tumble/' + team_data, '')
 
-        if results is not None and isinstance(results, list):
-            for match_key, match_data in results.items():
-                if 'auto' in match_data and isinstance(match_data['auto'], dict):
-                    for auto_key, auto_data in match_data['auto'].items():
-                        balanced_value = auto_data.get('balanced', None)
+        balanced_true_count = 0
+        total_count = 0
 
-                        if balanced_value and balanced_value.lower() == 'true':
-                            yesCounter += 1
+        for item in results:
+            if item and "auto" in item:
+                auto_data = item["auto"]
+                for entry in auto_data.values():
+                    if entry.get("balanced") == "true":
+                        balanced_true_count += 1
+                    total_count += 1
 
-                        total += 1
+        if total_count == 0:
+            return 0  # Avoid division by zero
 
-            if total > 0:
-                print("works")
-                return (yesCounter / total) * 100.0  # Calculate the percentage
-            else:
-                print("zero division")
-                return 0  # Avoid division by zero
-        else:
-            print("not works")
-            return 0
+        percentage = (balanced_true_count / total_count) * 100
+        self.root.get_screen('autoData').ids.balanced_percentage.text = str(percentage)
+        return round(percentage, 2)
     
+    def get_auto_docked_percentage(self):
+        from firebase import firebase
+        firebase = firebase.FirebaseApplication('https://scouting-app-68229-default-rtdb.firebaseio.com/', None)
+        results = firebase.get('https://scouting-app-68229-default-rtdb.firebaseio.com/tidal_tumble/' + team_data, '')
+
+        docked_true_count = 0
+        total_count = 0
+
+        for item in results:
+            if item and "auto" in item:
+                auto_data = item["auto"]
+                for entry in auto_data.values():
+                    if entry.get("docked") == "true":
+                        docked_true_count += 1
+                    total_count += 1
+
+        if total_count == 0:
+            return 0  # Avoid division by zero
+
+        percentage = (docked_true_count / total_count) * 100
+        self.root.get_screen('autoData').ids.docked_percentage.text = str(percentage)
+        return round(percentage, 2)
+
+    def get_auto_taxi_percentage(self):
+            from firebase import firebase
+            firebase = firebase.FirebaseApplication('https://scouting-app-68229-default-rtdb.firebaseio.com/', None)
+            results = firebase.get('https://scouting-app-68229-default-rtdb.firebaseio.com/tidal_tumble/' + team_data, '')
+
+            taxi_true_count = 0
+            total_count = 0
+
+            for item in results:
+                if item and "auto" in item:
+                    auto_data = item["auto"]
+                    for entry in auto_data.values():
+                        if entry.get("taxi") == "true":
+                            taxi_true_count += 1
+                        total_count += 1
+
+            if total_count == 0:
+                return 0  # Avoid division by zero
+
+            percentage = (taxi_true_count / total_count) * 100
+            self.root.get_screen('autoData').ids.taxi_percentage.text = str(percentage)
+            return round(percentage, 2)
+    
+    def get_auto_grid_percentage(self):
+        from firebase import firebase
+        firebase = firebase.FirebaseApplication('https://scouting-app-68229-default-rtdb.firebaseio.com/', None)      
+        results = firebase.get('https://scouting-app-68229-default-rtdb.firebaseio.com/tidal_tumble/' + team_data, '')
+        autoGridPercentage = [[0, 0, 0],[0, 0, 0],[0, 0, 0]]
+        three = [0, 1, 2]
+        total_count = 0
+
+        for item in results: 
+            if item and "auto" in item:
+                auto_data = item["auto"]
+                for item2 in auto_data.values():
+                    if 'grid' in item2:
+                        auto_grid_data = item2["grid"]
+                        for x in three:
+                            for y in three:
+                                if auto_grid_data[x][y] == 1:
+                                    autoGridPercentage[x][y] = autoGridPercentage[x][y] + 1
+                                    total_count = total_count + 1
+
+        
+        if total_count == 0:
+            pass
+        else:    
+            for x in three:
+                for y in three:
+                    global current_auto_grid_percentage
+                    current_auto_grid_percentage[x][y] = autoGridPercentage[x][y] / total_count
+                    print(current_auto_grid_percentage[x][y])
+        
+
+    def update_button_color(self, percentage, page, slot):
+        # Calculate RGB values for the gradient based on the percentage
+        r = int(255 * (1 - percentage))
+        g = int(255 * percentage)
+        b = 0
+
+        # Set the button's background color
+        self.root.get_screen(page).ids[slot].md_bg_color = (r / 255, g / 255, b, 1)
 
 if __name__ == "__main__":
     LabelBase.register(name="MPoppins", fn_regular="C:\\Users\\elee9\\Downloads\\Poppins\\Poppins-Medium.ttf")

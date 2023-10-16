@@ -1,5 +1,5 @@
 MDScreen:
-    name: "autoData"
+    name: "teleopData"
 
     MDFloatLayout:
         md_bg_color: 1, 1, 1, 1
@@ -11,7 +11,7 @@ MDScreen:
             text_color: rgba(26, 24, 58, 255)
             on_release:
                 root.manager.transition.direction = "right"
-                root.manager.current = "s1i"
+                root.manager.current = "autoData"
         
         MDLabel:
             id: data_team
@@ -23,7 +23,7 @@ MDScreen:
             color: rgba(0, 0, 59, 255)
         
         MDLabel:
-            text: "Autonomous Data"
+            text: "Teleoperation Data"
             font_name: "BPoppins"
             font_size: "18sp"
             halign: "center"
@@ -47,77 +47,69 @@ MDScreen:
             row_default_height: 50
             col_default_width: 50
 
-            MDRectangleFlatButton:
+            MDIconButton:
                 id: one_one
-                text: ""
-                md_bg_color: 25, 1, 0, 1  
+                icon: "square-rounded-outline"
+                source: 
                 size_hint: None, None
-                width: 50
-                height: 50
+                on_release:
+                    app.change_cone("auto", "one_one")
 
-            MDRectangleFlatButton:
+            MDIconButton:
                 id: one_two
-                text: ""
-                md_bg_color: 0, 1, 0, 1  
+                icon: "square-rounded-outline"
                 size_hint: None, None
-                width: 50
-                height: 50
+                on_release:
+                    app.change_cube("auto", "one_two")
 
-            MDRectangleFlatButton:
+            MDIconButton:
                 id: one_three
-                text: ""
-                md_bg_color: 0, 1, 0, 1  
+                icon: "square-rounded-outline"
                 size_hint: None, None
-                width: 50
-                height: 50
+                on_release:
+                    app.change_cone("auto", "one_three")
 
-            MDRectangleFlatButton:
+            MDIconButton:
                 id: two_one
-                text: ""
-                md_bg_color: 0, 1, 0, 1  
+                icon: "square-rounded-outline"
                 size_hint: None, None
-                width: 50
-                height: 50
+                on_release:
+                    app.change_cone("auto", "two_one")
             
-            MDRectangleFlatButton:
+            MDIconButton:
                 id: two_two
-                text: ""
-                md_bg_color: 0, 1, 0, 1  
+                icon: "square-rounded-outline"
                 size_hint: None, None
-                width: 50
-                height: 50
+                on_release:
+                    app.change_cube("auto", "two_two")
 
-            MDRectangleFlatButton:
+            MDIconButton:
                 id: two_three
-                text: ""
-                md_bg_color: 0, 1, 0, 1  
+                icon: "square-rounded-outline"
                 size_hint: None, None
-                width: 50
-                height: 50
+                on_release:
+                    app.change_cone("auto", "two_three")
 
-            MDRectangleFlatButton:
+            MDIconButton:
                 id: three_one
-                text: ""
-                md_bg_color: 0, 1, 0, 1  
+                icon: "square-rounded-outline"
                 size_hint: None, None
-                width: 50
-                height: 50
+                on_release:
+                    app.change_bot("auto", "three_one")
 
-            MDRectangleFlatButton:
+            MDIconButton:
                 id: three_two
-                text: ""
-                md_bg_color: 0, 1, 0, 1  
+                icon: "square-rounded-outline"
                 size_hint: None, None
-                width: 50
-                height: 50
+                on_release:
+                    app.change_bot("auto", "three_two")
             
-            MDRectangleFlatButton:
+            MDIconButton:
                 id: three_three
-                text: ""
-                md_bg_color: 0, 1, 0, 1  
+                icon: "square-rounded-outline"
                 size_hint: None, None
-                width: 50
-                height: 50
+                on_release:
+                    app.change_bot("auto", "three_three")
         
         MDLabel:
             text: "Balanced Percentage"
@@ -180,8 +172,8 @@ MDScreen:
             pos_hint: {"center_x": .5, "center_y": .18}
             background_color: 0, 0, 0, 0
             on_release:
-                root.manager.transition.direction = "left"
-                root.manager.current = "teleopData"
+                self.root.transition.direction = "left"
+                self.root.current = "teleopData"
             canvas.before:
                 Color:
                     rgb: rgba(0, 130, 190, 255)

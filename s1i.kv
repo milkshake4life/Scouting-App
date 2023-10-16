@@ -69,6 +69,9 @@ MDScreen:
             on_release:
                 app.verify_team_number(teamNumber)
                 app.get_auto_balanced_percentage()
+                app.get_auto_docked_percentage()
+                app.get_auto_taxi_percentage()
+                app.get_auto_grid_percentage()
             canvas.before:
                 Color:
                     rgb: rgba(0, 130, 190, 255)
