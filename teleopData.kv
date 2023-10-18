@@ -38,79 +38,204 @@ MDScreen:
             font_size: "15sp"
 
         MDGridLayout:
-            id: auto_grid_layout
-            cols: 3
+            id: teleop_grid_layout
+            cols: 9
             rows: 3
-            pos_hint: {"center_x": 0.822, "center_y": .2}
+            pos_hint: {"center_x": 0.52, "center_y": .2}
             row_force_default: True
             col_force_default: True
             row_default_height: 50
             col_default_width: 50
 
-            MDIconButton:
-                id: one_one
-                icon: "square-rounded-outline"
-                source: 
+            MDRectangleFlatButton:
+                md_bg_color: 25, 1, 0, 1  
                 size_hint: None, None
-                on_release:
-                    app.change_cone("auto", "one_one")
+                width: 50
+                height: 50
+                border: False 
 
-            MDIconButton:
-                id: one_two
-                icon: "square-rounded-outline"
+            MDRectangleFlatButton:
+                md_bg_color: 0, 1, 0, 1  
                 size_hint: None, None
-                on_release:
-                    app.change_cube("auto", "one_two")
+                width: 50
+                height: 50
+                border: False
 
-            MDIconButton:
-                id: one_three
-                icon: "square-rounded-outline"
+            MDRectangleFlatButton:
+                md_bg_color: 0, 1, 0, 1  
                 size_hint: None, None
-                on_release:
-                    app.change_cone("auto", "one_three")
+                width: 50
+                height: 50
+                border: False 
 
-            MDIconButton:
-                id: two_one
-                icon: "square-rounded-outline"
+            MDRectangleFlatButton:
+                md_bg_color: 0, 1, 0, 1  
                 size_hint: None, None
-                on_release:
-                    app.change_cone("auto", "two_one")
+                width: 50
+                height: 50
+                border: False 
             
-            MDIconButton:
-                id: two_two
-                icon: "square-rounded-outline"
+            MDRectangleFlatButton:
+                md_bg_color: 0, 1, 0, 1  
                 size_hint: None, None
-                on_release:
-                    app.change_cube("auto", "two_two")
+                width: 50
+                height: 50
+                border: False 
 
-            MDIconButton:
-                id: two_three
-                icon: "square-rounded-outline"
+            MDRectangleFlatButton:
+                md_bg_color: 0, 1, 0, 1  
                 size_hint: None, None
-                on_release:
-                    app.change_cone("auto", "two_three")
+                width: 50
+                height: 50
+                border: False 
 
-            MDIconButton:
-                id: three_one
-                icon: "square-rounded-outline"
+            MDRectangleFlatButton:
+                md_bg_color: 0, 1, 0, 1  
                 size_hint: None, None
-                on_release:
-                    app.change_bot("auto", "three_one")
+                width: 50
+                height: 50
+                border: False 
 
-            MDIconButton:
-                id: three_two
-                icon: "square-rounded-outline"
+            MDRectangleFlatButton:
+                md_bg_color: 0, 1, 0, 1  
                 size_hint: None, None
-                on_release:
-                    app.change_bot("auto", "three_two")
+                width: 50
+                height: 50
+                border: False 
             
-            MDIconButton:
-                id: three_three
-                icon: "square-rounded-outline"
+            MDRectangleFlatButton:
+                md_bg_color: 0, 1, 0, 1  
                 size_hint: None, None
-                on_release:
-                    app.change_bot("auto", "three_three")
-        
+                width: 50
+                height: 50
+                border: False
+
+            MDRectangleFlatButton:
+                md_bg_color: 25, 1, 0, 1  
+                size_hint: None, None
+                width: 50
+                height: 50
+                border: False 
+
+            MDRectangleFlatButton:
+                md_bg_color: 0, 1, 0, 1  
+                size_hint: None, None
+                width: 50
+                height: 50
+                border: False
+
+            MDRectangleFlatButton:
+                md_bg_color: 0, 1, 0, 1  
+                size_hint: None, None
+                width: 50
+                height: 50
+                border: False 
+
+            MDRectangleFlatButton:
+                md_bg_color: 0, 1, 0, 1  
+                size_hint: None, None
+                width: 50
+                height: 50
+                border: False 
+            
+            MDRectangleFlatButton:
+                md_bg_color: 0, 1, 0, 1  
+                size_hint: None, None
+                width: 50
+                height: 50
+                border: False 
+
+            MDRectangleFlatButton:
+                md_bg_color: 0, 1, 0, 1  
+                size_hint: None, None
+                width: 50
+                height: 50
+                border: False 
+
+            MDRectangleFlatButton:
+                md_bg_color: 0, 1, 0, 1  
+                size_hint: None, None
+                width: 50
+                height: 50
+                border: False 
+
+            MDRectangleFlatButton:
+                md_bg_color: 0, 1, 0, 1  
+                size_hint: None, None
+                width: 50
+                height: 50
+                border: False 
+            
+            MDRectangleFlatButton:
+                md_bg_color: 0, 1, 0, 1  
+                size_hint: None, None
+                width: 50
+                height: 50
+                border: False 
+
+            MDRectangleFlatButton:
+                md_bg_color: 25, 1, 0, 1  
+                size_hint: None, None
+                width: 50
+                height: 50
+                border: False 
+
+            MDRectangleFlatButton:
+                md_bg_color: 0, 1, 0, 1  
+                size_hint: None, None
+                width: 50
+                height: 50
+                border: False
+
+            MDRectangleFlatButton:
+                md_bg_color: 0, 1, 0, 1  
+                size_hint: None, None
+                width: 50
+                height: 50
+                border: False 
+
+            MDRectangleFlatButton:
+                md_bg_color: 0, 1, 0, 1  
+                size_hint: None, None
+                width: 50
+                height: 50
+                border: False 
+            
+            MDRectangleFlatButton:
+                md_bg_color: 0, 1, 0, 1  
+                size_hint: None, None
+                width: 50
+                height: 50
+                border: False 
+
+            MDRectangleFlatButton:
+                md_bg_color: 0, 1, 0, 1  
+                size_hint: None, None
+                width: 50
+                height: 50
+                border: False 
+
+            MDRectangleFlatButton:
+                md_bg_color: 0, 1, 0, 1  
+                size_hint: None, None
+                width: 50
+                height: 50
+                border: False 
+
+            MDRectangleFlatButton:
+                md_bg_color: 0, 1, 0, 1  
+                size_hint: None, None
+                width: 50
+                height: 50
+                border: False 
+            
+            MDRectangleFlatButton:
+                md_bg_color: 0, 1, 0, 1  
+                size_hint: None, None
+                width: 50
+                height: 50
+                border: False
+
         MDLabel:
             text: "Balanced Percentage"
             font_name: "BPoppins"
@@ -134,30 +259,12 @@ MDScreen:
             font_name: "BPoppins"
             font_size: "13sp"
             size_hint_x: 0.85
-            pos_hint: {"center_x": 0.325, "center_y": 0.5}
-            halign: "center"
-
-        MDLabel:
-            text: ''
-            id: docked_percentage
-            font_name: "BPoppins"
-            font_size: "13sp"
-            pos_hint: {"center_x": 0.7, "center_y": 0.5}
-            halign: "center"
-            icon: "square-rounded-outline"
-            size_hint: None, None
-        
-        MDLabel:
-            text: "Taxi Percentage"
-            font_name: "BPoppins"
-            font_size: "13sp"
-            size_hint_x: 0.85
             pos_hint: {"center_x": 0.325, "center_y": 0.45}
             halign: "center"
 
         MDLabel:
             text: ''
-            id: taxi_percentage
+            id: docked_percentage
             font_name: "BPoppins"
             font_size: "13sp"
             pos_hint: {"center_x": 0.7, "center_y": 0.45}

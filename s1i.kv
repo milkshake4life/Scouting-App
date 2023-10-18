@@ -67,11 +67,8 @@ MDScreen:
             pos_hint: {"center_x": .5, "center_y": .18}
             background_color: 0, 0, 0, 0
             on_release:
-                app.verify_team_number(teamNumber)
-                app.get_auto_balanced_percentage()
-                app.get_auto_docked_percentage()
-                app.get_auto_taxi_percentage()
-                app.get_auto_grid_percentage()
+                app.all_auto_functions(app.verify_team_number(teamNumber))
+                app.update_auto_button_color('auto_grid_layout')
             canvas.before:
                 Color:
                     rgb: rgba(0, 130, 190, 255)

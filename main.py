@@ -18,6 +18,7 @@ class MainApp(MDApp):
     qualification_match_text = ''
     team_data = ''
     current_auto_grid_percentage = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+    current_teleop_grid_percentage = [[0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0]]
 
 
     def build(self):
@@ -98,6 +99,9 @@ class MainApp(MDApp):
     
         if not is_verified:
             self.root.get_screen('s1i').ids.status_label.text = "Team number not found in database"
+            return is_verified
+        else:
+            return is_verified
 
     def change_cone(self, page, square):
 
@@ -257,7 +261,7 @@ class MainApp(MDApp):
         if total_count == 0:
             return 0  # Avoid division by zero
 
-        percentage = (balanced_true_count / total_count) * 100
+        percentage = round((balanced_true_count / total_count) * 100)
         self.root.get_screen('autoData').ids.balanced_percentage.text = str(percentage)
         return round(percentage, 2)
     
@@ -280,7 +284,7 @@ class MainApp(MDApp):
         if total_count == 0:
             return 0  # Avoid division by zero
 
-        percentage = (docked_true_count / total_count) * 100
+        percentage = round((docked_true_count / total_count) * 100)
         self.root.get_screen('autoData').ids.docked_percentage.text = str(percentage)
         return round(percentage, 2)
 
@@ -303,7 +307,7 @@ class MainApp(MDApp):
             if total_count == 0:
                 return 0  # Avoid division by zero
 
-            percentage = (taxi_true_count / total_count) * 100
+            percentage = round((taxi_true_count / total_count) * 100)
             self.root.get_screen('autoData').ids.taxi_percentage.text = str(percentage)
             return round(percentage, 2)
     
@@ -333,20 +337,130 @@ class MainApp(MDApp):
         else:    
             for x in three:
                 for y in three:
-                    global current_auto_grid_percentage
-                    current_auto_grid_percentage[x][y] = autoGridPercentage[x][y] / total_count
-                    print(current_auto_grid_percentage[x][y])
+                    autoGridPercentage[x][y] = autoGridPercentage[x][y] / total_count
+        global current_auto_grid_percentage
+        current_auto_grid_percentage = autoGridPercentage
         
+    def all_auto_functions(self, getData):   
+        if getData:
+            from firebase import firebase
+            firebase = firebase.FirebaseApplication('https://scouting-app-68229-default-rtdb.firebaseio.com/', None)
+            results = firebase.get('https://scouting-app-68229-default-rtdb.firebaseio.com/tidal_tumble/' + team_data, '')
 
-    def update_button_color(self, percentage, page, slot):
-        # Calculate RGB values for the gradient based on the percentage
-        r = int(255 * (1 - percentage))
-        g = int(255 * percentage)
-        b = 0
+            balanced_true_count = 0
+            docked_true_count = 0
+            taxi_true_count = 0
+            autoGridPercentage = [[0, 0, 0],[0, 0, 0],[0, 0, 0]]
+            three = [0, 1, 2]
+            total_count = 0
 
-        # Set the button's background color
-        self.root.get_screen(page).ids[slot].md_bg_color = (r / 255, g / 255, b, 1)
+            #print(results)
+            for item in results:
+                print(item)
+                if item and "auto" in item:
+                    auto_data = item["auto"]
+                    for entry in auto_data.values():
+                        if entry.get("docked") == "true":
+                            docked_true_count += 1
+                        if entry.get("balanced") == "true":
+                            balanced_true_count += 1
+                        if entry.get("taxi") == "true":
+                            taxi_true_count += 1
+                        if 'grid' in entry:
+                            auto_grid_data = entry["grid"]
+                            for x in three:
+                                for y in three:
+                                    if auto_grid_data[x][y] == 1:
+                                        autoGridPercentage[x][y] = autoGridPercentage[x][y] + 1
+                        total_count += 1
 
+            balanced_percentage = round((balanced_true_count / total_count) * 100)
+            self.root.get_screen('autoData').ids.balanced_percentage.text = str(balanced_percentage)
+            docked_percentage = round((docked_true_count / total_count) * 100)
+            self.root.get_screen('autoData').ids.docked_percentage.text = str(docked_percentage)
+            taxi_percentage = round((taxi_true_count / total_count) * 100)
+            self.root.get_screen('autoData').ids.taxi_percentage.text = str(taxi_percentage)
+            
+            if total_count == 0:
+                pass
+            else:    
+                for x in three:
+                    for y in three:
+                        autoGridPercentage[x][y] = autoGridPercentage[x][y] / total_count
+            
+            global current_auto_grid_percentage
+            current_auto_grid_percentage = autoGridPercentage
+
+    def update_auto_button_color(self, grid):
+        three = [0, 1, 2]
+        for row in three:
+            for cols in three:
+                # Calculate Opacity factor values for the gradient based on the percentage
+                percentage = round(current_auto_grid_percentage[row][cols]*10)/10
+
+                button = self.root.get_screen('autoData').ids[grid].children[8-(row * 3 + cols)]
+                button.md_bg_color = (46/255, 143/255, 72/255, 1*percentage)
+
+    def all_teleop_functions(self):
+        from firebase import firebase
+        firebase = firebase.FirebaseApplication('https://scouting-app-68229-default-rtdb.firebaseio.com/', None)
+        results = firebase.get('https://scouting-app-68229-default-rtdb.firebaseio.com/tidal_tumble/' + team_data, '')
+
+        balanced_true_count = 0
+        docked_true_count = 0
+        taxi_true_count = 0
+        teleopGridPercentage = [[0, 0, 0, 0, 0, 0, 0, 0, 0],[0, 0, 0, 0, 0, 0, 0, 0, 0],[0, 0, 0, 0, 0, 0, 0, 0, 0]]
+        three = [0, 1, 2]
+        nine = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+        total_count = 0
+
+        #print(results)
+        for item in results:
+            #print(item)
+            if item and "teleop" in item:
+                teleop_data = item["teleop"]
+                for entry in teleop_data.values():
+                    if entry.get("docked") == "true":
+                        docked_true_count += 1
+                    if entry.get("balanced") == "true":
+                        balanced_true_count += 1
+                    if entry.get("taxi") == "true":
+                        taxi_true_count += 1
+                    if 'grid' in entry:
+                        teleop_grid_data = entry["grid"]
+                        for x in three:
+                            for y in nine:
+                                if teleop_grid_data[x][y] == 1:
+                                    teleopGridPercentage[x][y] = teleopGridPercentage[x][y] + 1
+                    total_count += 1
+
+        balanced_percentage = round((balanced_true_count / total_count) * 100)
+        self.root.get_screen('teleopData').ids.balanced_percentage.text = str(balanced_percentage)
+        docked_percentage = round((docked_true_count / total_count) * 100)
+        self.root.get_screen('teleopData').ids.docked_percentage.text = str(docked_percentage)
+            
+        if total_count == 0:
+            pass
+        else:    
+            for x in three:
+                for y in three:
+                    teleopGridPercentage[x][y] = teleopGridPercentage[x][y] / total_count
+            
+        global current_teleop_grid_percentage
+        current_teleop_grid_percentage = teleopGridPercentage
+    
+    def update_teleop_button_color(self, grid):
+        three = [0, 1, 2]
+        nine = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+        for row in three:
+            for cols in nine:
+                # Calculate Opacity factor values for the gradient based on the percentage
+                percentage = round(current_teleop_grid_percentage[row][cols]*10)/10
+
+                button = self.root.get_screen('teleopData').ids[grid].children[26-(row * 9 + cols)]
+                print(26-(row*3 + cols))
+                button.md_bg_color = (46/255, 143/255, 72/255, 1*percentage)
+        
 if __name__ == "__main__":
     LabelBase.register(name="MPoppins", fn_regular="C:\\Users\\elee9\\Downloads\\Poppins\\Poppins-Medium.ttf")
     LabelBase.register(name="BPoppins", fn_regular="C:\\Users\\elee9\\Downloads\\Poppins\\Poppins-SemiBold.ttf")

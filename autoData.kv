@@ -37,6 +37,7 @@ MDScreen:
             font_name: "BPoppins"
             font_size: "15sp"
 
+        
         MDGridLayout:
             id: auto_grid_layout
             cols: 3
@@ -47,6 +48,7 @@ MDScreen:
             row_default_height: 50
             col_default_width: 50
 
+
             MDRectangleFlatButton:
                 id: one_one
                 text: ""
@@ -54,6 +56,7 @@ MDScreen:
                 size_hint: None, None
                 width: 50
                 height: 50
+                border: False 
 
             MDRectangleFlatButton:
                 id: one_two
@@ -62,6 +65,7 @@ MDScreen:
                 size_hint: None, None
                 width: 50
                 height: 50
+                border: False
 
             MDRectangleFlatButton:
                 id: one_three
@@ -70,6 +74,7 @@ MDScreen:
                 size_hint: None, None
                 width: 50
                 height: 50
+                border: False 
 
             MDRectangleFlatButton:
                 id: two_one
@@ -78,6 +83,7 @@ MDScreen:
                 size_hint: None, None
                 width: 50
                 height: 50
+                border: False 
             
             MDRectangleFlatButton:
                 id: two_two
@@ -86,6 +92,7 @@ MDScreen:
                 size_hint: None, None
                 width: 50
                 height: 50
+                border: False 
 
             MDRectangleFlatButton:
                 id: two_three
@@ -94,6 +101,7 @@ MDScreen:
                 size_hint: None, None
                 width: 50
                 height: 50
+                border: False 
 
             MDRectangleFlatButton:
                 id: three_one
@@ -102,6 +110,7 @@ MDScreen:
                 size_hint: None, None
                 width: 50
                 height: 50
+                border: False 
 
             MDRectangleFlatButton:
                 id: three_two
@@ -110,6 +119,7 @@ MDScreen:
                 size_hint: None, None
                 width: 50
                 height: 50
+                border: False 
             
             MDRectangleFlatButton:
                 id: three_three
@@ -118,6 +128,7 @@ MDScreen:
                 size_hint: None, None
                 width: 50
                 height: 50
+                border: False 
         
         MDLabel:
             text: "Balanced Percentage"
@@ -182,6 +193,8 @@ MDScreen:
             on_release:
                 root.manager.transition.direction = "left"
                 root.manager.current = "teleopData"
+                app.all_teleop_functions()
+                app.update_teleop_button_color('teleop_grid_layout')
             canvas.before:
                 Color:
                     rgb: rgba(0, 130, 190, 255)
