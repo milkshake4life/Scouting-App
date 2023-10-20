@@ -92,12 +92,16 @@ class MainApp(MDApp):
                     is_verified = True
                     self.root.transition.direction = "left"
                     self.root.current = "autoData"
-                    self.root.get_screen('autoData').ids.data_team.text = team_number_text
+                    self.root.get_screen('autoData').ids.data_team.text = "Team " + team_number_text
+                    self.root.get_screen('teleopData').ids.data_team.text = "Team " + team_number_text
                     global team_data
                     team_data = team_number_text
+                    self.root.get_screen('s1i').ids.teamNumber.text = ""
+                    self.root.get_screen('s1i').ids.status_label.text = ""
                     break
     
         if not is_verified:
+            self.root.get_screen('s1i').ids.status_label.text = ""
             self.root.get_screen('s1i').ids.status_label.text = "Team number not found in database"
             return is_verified
         else:
@@ -163,20 +167,29 @@ class MainApp(MDApp):
         auto_grid = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
         if(self.root.get_screen('auto').ids.wire.icon == "checkbox-marked"):
            placement = "wire"
+           self.root.get_screen('auto').ids.wire.icon = "square-rounded-outline"
         elif(self.root.get_screen('auto').ids.middle.icon == "checkbox-marked"):
             placement = "middle"
+            self.root.get_screen('auto').ids.middle.icon = "square-rounded-outline"
         else:
             placement = "short"
+            self.root.get_screen('auto').ids.short.icon = "square-rounded-outline"
         taxi = "false"
         balanced = "false"
         docked = "false"
 
         if((self.root.get_screen('auto').ids.check1.icon == "checkbox-marked")):
             taxi = "true"
+            self.root.get_screen('auto').ids.check1.icon = "square-rounded-outline"
+        self.root.get_screen('auto').ids.check2.icon = "square-rounded-outline"
         if((self.root.get_screen('auto').ids.check3.icon == "checkbox-marked")):
             balanced = "true"
+            self.root.get_screen('auto').ids.check3.icon = "square-rounded-outline"
+        self.root.get_screen('auto').ids.check4.icon = "square-rounded-outline"
         if((self.root.get_screen('auto').ids.check5.icon == "checkbox-marked")):
             docked = "true"
+            self.root.get_screen('auto').ids.check5.icon = "square-rounded-outline"
+        self.root.get_screen('auto').ids.check6.icon = "square-rounded-outline"
 
 
         three = [0, 1, 2]
@@ -186,6 +199,7 @@ class MainApp(MDApp):
                 button = self.root.get_screen('auto').ids[grid].children[8-(row * 3 + cols)]
                 if (button.icon != "square-rounded-outline"):
                     auto_grid[row][cols] = 1
+                    button.icon = "square-rounded-outline"
         
 
         
@@ -211,10 +225,16 @@ class MainApp(MDApp):
 
         if((self.root.get_screen('teleop').ids.check1.icon == "checkbox-marked")):
             defense = "true"
+            self.root.get_screen('teleop').ids.check1.icon = "square-rounded-outline"
+        self.root.get_screen('teleop').ids.check2.icon = "square-rounded-outline"
         if((self.root.get_screen('teleop').ids.check3.icon == "checkbox-marked")):
-            balanced = "true"
+            balance = "true"
+            self.root.get_screen('teleop').ids.check3.icon = "square-rounded-outline"
+        self.root.get_screen('teleop').ids.check4.icon = "square-rounded-outline"
         if((self.root.get_screen('teleop').ids.check5.icon == "checkbox-marked")):
             docked = "true"
+            self.root.get_screen('teleop').ids.check5.icon = "square-rounded-outline"
+        self.root.get_screen('teleop').ids.check6.icon = "square-rounded-outline"
 
         #fix this
         three = [0, 1, 2]
@@ -224,12 +244,15 @@ class MainApp(MDApp):
                 leftButton = self.root.get_screen('teleop').ids[left_grid].children[8-(row * 3 + cols)]
                 if (leftButton.icon != "square-rounded-outline"):
                     teleop_grid[row][cols] = 1
+                    leftButton.icon = "square-rounded-outline"
                 middleButton = self.root.get_screen('teleop').ids[middle_grid].children[8-(row * 3 + cols)]
                 if (middleButton.icon != "square-rounded-outline"):
                     teleop_grid[row][cols + 3] = 1
+                    middleButton.icon = "square-rounded-outline"
                 rightButton = self.root.get_screen('teleop').ids[right_grid].children[8-(row * 3 + cols)]
                 if (rightButton.icon != "square-rounded-outline"):
                     teleop_grid[row][cols + 6] = 1
+                    rightButton.icon = "square-rounded-outline"
         
 
         
@@ -356,7 +379,7 @@ class MainApp(MDApp):
 
             #print(results)
             for item in results:
-                print(item)
+                #print(item)
                 if item and "auto" in item:
                     auto_data = item["auto"]
                     for entry in auto_data.values():
@@ -391,6 +414,9 @@ class MainApp(MDApp):
             global current_auto_grid_percentage
             current_auto_grid_percentage = autoGridPercentage
 
+            self.update_auto_button_color('auto_grid_layout')
+            self.all_teleop_functions(results)
+
     def update_auto_button_color(self, grid):
         three = [0, 1, 2]
         for row in three:
@@ -401,10 +427,8 @@ class MainApp(MDApp):
                 button = self.root.get_screen('autoData').ids[grid].children[8-(row * 3 + cols)]
                 button.md_bg_color = (46/255, 143/255, 72/255, 1*percentage)
 
-    def all_teleop_functions(self):
-        from firebase import firebase
-        firebase = firebase.FirebaseApplication('https://scouting-app-68229-default-rtdb.firebaseio.com/', None)
-        results = firebase.get('https://scouting-app-68229-default-rtdb.firebaseio.com/tidal_tumble/' + team_data, '')
+    def all_teleop_functions(self, data):
+        results = data
 
         balanced_true_count = 0
         docked_true_count = 0
@@ -448,6 +472,7 @@ class MainApp(MDApp):
             
         global current_teleop_grid_percentage
         current_teleop_grid_percentage = teleopGridPercentage
+        self.update_teleop_button_color('teleop_grid_layout')
     
     def update_teleop_button_color(self, grid):
         three = [0, 1, 2]
@@ -458,7 +483,7 @@ class MainApp(MDApp):
                 percentage = round(current_teleop_grid_percentage[row][cols]*10)/10
 
                 button = self.root.get_screen('teleopData').ids[grid].children[26-(row * 9 + cols)]
-                print(26-(row*3 + cols))
+                #print(26-(row*3 + cols))
                 button.md_bg_color = (46/255, 143/255, 72/255, 1*percentage)
         
 if __name__ == "__main__":
